@@ -1,0 +1,35 @@
+{
+    "actions":{
+    		"Submit64":"app.handler.SubmitActionBase64StoreText",
+    		
+    		"GetArticle":"app.handler.GetArticleAction",
+    		"VerifyArticle":"app.handler.VerifyArticleAction",
+    		
+    		"Vote":"app.handler.VoteAction",
+    		"GetVoteCount":"app.handler.GetVoteCountAction",
+    		
+    		"GetImage":"app.handler.GetImageActionDB",
+    		
+    		"SubmitUserData":"app.handler.SubmitUserDataAction",
+    		
+    		"Admin":"app.management.VerifyAdmin",
+    		"VerifyManager":"app.management.VerifyManager",
+    		"LuckyDraw":"app.management.LuckyDraw",
+    		
+    		"CreateTable":"app.management.CreateTableMysql",
+    		"CreateTableMS":"app.management.CreateTableMssql",
+    },
+    
+    "custom":{
+    		"db":"mssql",
+    		"connection-type":"manual",
+    		"connection-jndi":"jdbc/websphere",
+    		"connection-manual":{
+    			"driverClassName":"com.microsoft.sqlserver.jdbc.SQLServerDriver",
+    			"url":"jdbc:sqlserver://localhost:1433;databaseName=test_db;integratedSecurity=false;",
+    			"username":"sa",
+    			"password":"sa"
+    		},
+    		"fb-share-size":[510,335]
+    }
+}

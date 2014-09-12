@@ -1,0 +1,398 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>【永保安康保富邦】My Car, My Life !我與愛車創意照片徵選活動</title>
+<link href="css.css" rel="stylesheet" type="text/css" />
+
+
+<script type="text/javascript">
+	function MM_swapImgRestore() { //v3.0
+		var i, x, a = document.MM_sr;
+		for (i = 0; a && i < a.length && (x = a[i]) && x.oSrc; i++)
+			x.src = x.oSrc;
+	}
+	function MM_preloadImages() { //v3.0
+		var d = document;
+		if (d.images) {
+			if (!d.MM_p)
+				d.MM_p = new Array();
+			var i, j = d.MM_p.length, a = MM_preloadImages.arguments;
+			for (i = 0; i < a.length; i++)
+				if (a[i].indexOf("#") != 0) {
+					d.MM_p[j] = new Image;
+					d.MM_p[j++].src = a[i];
+				}
+		}
+	}
+
+	function MM_findObj(n, d) { //v4.01
+		var p, i, x;
+		if (!d)
+			d = document;
+		if ((p = n.indexOf("?")) > 0 && parent.frames.length) {
+			d = parent.frames[n.substring(p + 1)].document;
+			n = n.substring(0, p);
+		}
+		if (!(x = d[n]) && d.all)
+			x = d.all[n];
+		for (i = 0; !x && i < d.forms.length; i++)
+			x = d.forms[i][n];
+		for (i = 0; !x && d.layers && i < d.layers.length; i++)
+			x = MM_findObj(n, d.layers[i].document);
+		if (!x && d.getElementById)
+			x = d.getElementById(n);
+		return x;
+	}
+
+	function MM_swapImage() { //v3.0
+		var i, j = 0, x, a = MM_swapImage.arguments;
+		document.MM_sr = new Array;
+		for (i = 0; i < (a.length - 2); i += 3)
+			if ((x = MM_findObj(a[i])) != null) {
+				document.MM_sr[j++] = x;
+				if (!x.oSrc)
+					x.oSrc = x.src;
+				x.src = a[i + 2];
+			}
+	}
+</script>
+
+
+
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script>
+	!window.jQuery
+			&& document.write('<script src="jquery-1.4.3.min.js"><\/script>');
+</script>
+<script type="text/javascript"
+	src="./fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+<script type="text/javascript"
+	src="./fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="./fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+<style type="text/css">
+#apDiv4 {
+	position: absolute;
+	width: 594px;
+	height: 270px;
+	z-index: 2;
+	background-image: url(images/pop01.png);
+	top: 240px;
+	padding-top: 128px;
+	padding-left: 123px;
+	visibility: hidden;
+}
+#apDiv5 {
+	position:absolute;
+	width: 594px;
+	height: 308px;
+	z-index: 4;
+	background-image: url(images/pop06.png);
+	top: 240px;
+	padding-top: 128px;
+	padding-left: 123px;
+	visibility: hidden;
+}
+
+</style>
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				/*
+				 *   Examples - images
+				 */
+
+				$("a#example1").fancybox();
+
+				$("a#example2").fancybox({
+					'overlayShow' : false,
+					'transitionIn' : 'elastic',
+					'transitionOut' : 'elastic'
+				});
+
+				$("a#example3").fancybox({
+					'transitionIn' : 'none',
+					'transitionOut' : 'none'
+				});
+
+				$("a#example4").fancybox({
+					'opacity' : true,
+					'overlayShow' : false,
+					'transitionIn' : 'elastic',
+					'transitionOut' : 'none'
+				});
+
+				$("a#example5").fancybox();
+
+				$("a#example6").fancybox({
+					'titlePosition' : 'outside',
+					'overlayColor' : '#000',
+					'overlayOpacity' : 0.9
+				});
+
+				$("a#example7").fancybox({
+					'titlePosition' : 'inside'
+				});
+
+				$("a#example8").fancybox({
+					'titlePosition' : 'over'
+				});
+
+				$("a[rel=example_group]").fancybox(
+						{
+							'transitionIn' : 'none',
+							'transitionOut' : 'none',
+							'titlePosition' : 'over',
+							'titleFormat' : function(title, currentArray,
+									currentIndex, currentOpts) {
+								return '<span id="fancybox-title-over">Image '
+										+ (currentIndex + 1)
+										+ ' / '
+										+ currentArray.length
+										+ (title.length ? ' &nbsp; ' + title
+												: '') + '</span>';
+							}
+						});
+
+				/*
+				 *   Examples - various
+				 */
+
+				$("#various1").fancybox({
+					'titlePosition' : 'inside',
+					'transitionIn' : 'none',
+					'transitionOut' : 'none'
+				});
+
+				$("#various2").fancybox();
+
+				$("#various3").fancybox({
+					'width' : '75%',
+					'height' : '75%',
+					'autoScale' : false,
+					'transitionIn' : 'none',
+					'transitionOut' : 'none',
+					'type' : 'iframe'
+				});
+
+				$("#various4").fancybox({
+					'padding' : 0,
+					'autoScale' : false,
+					'transitionIn' : 'none',
+					'transitionOut' : 'none'
+				});
+			});
+	function MM_showHideLayers() { //v9.0
+		var i, p, v, obj, args = MM_showHideLayers.arguments;
+		for (i = 0; i < (args.length - 2); i += 3)
+			with (document)
+				if (getElementById && ((obj = getElementById(args[i])) != null)) {
+					v = args[i + 2];
+					if (obj.style) {
+						obj = obj.style;
+						v = (v == 'show') ? 'visible'
+								: (v == 'hide') ? 'hidden' : v;
+					}
+					obj.visibility = v;
+				}
+	}
+</script>
+
+
+</head>
+
+<body
+	onload="MM_preloadImages('images/gif02d.gif','images/pop3a.png','images/pop04a.png','images/pop05a.png','images/gif01d.gif')">
+
+	<div id="div_loading" style="display: none">
+		<div
+			style="width: 100%; height: 1140px; position: absolute; background-color: black; z-index: 10; opacity: .5"></div>
+		<p
+			style="position: absolute; left: 50%; top: 50%; z-index: 11; color: white">讀取中...</p>
+	</div>
+
+	<div id="apDiv1" class="top">
+		<div class="menu_all">
+			<!-- #BeginLibraryItem "/Library/menu.lbi" -->
+			<ul>
+				<li class="menu_logo"><a
+					href="https://www.fubon.com/insurance/b2c/content/main/new.html"
+					target="_blank">富邦產險</a></li>
+				<li class="menu_1"><a href="vote.html" target="_top">票選專區</a></li>
+				<li class="menu_2"><a href="event.html" target="_top">活動辦法</a></li>
+				<li class="menu_3"><a href="list.html" target="_top"">中獎名單</a></li>
+				<li class="menu_4"><a
+					href="https://www.fubon.com/insurance/b2c/content/main/new.html"
+					target="_blank">網路投保優惠專區</a></li>
+				<li class="menu_5"><a href="index.html" target="_top">回首頁</a></li>
+				<li class="menu_6"><a
+					href="https://www.facebook.com/fubon.ins?fref=ts" target="_blank">FB粉絲團</a></li>
+			</ul>
+			<!-- #EndLibraryItem -->
+			<div id="apDiv2">
+				<a href="https://www.fubon.com/insurance/b2c/content/main/new.html"
+					target="_blank"
+					onmouseover="MM_swapImage('Image3','','images/gif01d.gif',1)"
+					onmouseout="MM_swapImgRestore()"><img src="images/gif01.gif"
+					name="Image3" width="155" height="169" border="0" id="Image3" /></a>
+			</div>
+
+			<div id="apDiv3">
+				<a
+					href="https://b2c.518fb.com/portal/products/rsv/rsv.do?channel=03"
+					target="_blank"
+					onmouseover="MM_swapImage('Image1','','images/gif02d.gif',1)"
+					onmouseout="MM_swapImgRestore()"><img src="images/gif02.gif"
+					name="Image1" width="196" height="143" border="0" id="Image1" /></a>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="main02">
+
+
+		<div class="uplad_bg">
+			<p class="bar05">個人資料</p>
+
+			<div class="uplad_left">姓名</div>
+			<div class="uplad_right">
+				<input id="input_name" type="text" class="text01" size="60" />
+			</div>
+			<div style="clear: both;"></div>
+
+			<div class="uplad_left">性別</div>
+			<div class="uplad_right">
+				<input id="radio_boy" type="radio" name="radio" id="radio"
+					value="radio" /> <label for="radio"></label> 男 <input
+					id="radio_girl" type="radio" name="radio" id="radio2" value="radio" />
+				女
+			</div>
+			<div style="clear: both;"></div>
+
+			<div class="uplad_left">電話</div>
+			<div class="uplad_right">
+				<input id='input_phonenumber' type="text" class="text01" size="60" />
+			</div>
+			<div style="clear: both;"></div>
+
+			<div class="uplad_left">E-mail</div>
+			<div class="uplad_right">
+				<input id='input_email' type="text" class="text01" size="60" />
+			</div>
+			<div style="clear: both;"></div>
+
+			<div class="uplad_r1">
+				<input id='input_notice' type="checkbox" name="checkbox"
+					id="checkbox" /> <label for="checkbox"></label> 我已詳閱<a
+					id="various1" href="#inline1">注意事項</a>，並同意遵守活動辦法<br /> <input
+					id='input_notice2' type="checkbox" name="checkbox2" id="checkbox2" />
+				我已閱讀<a href="https://www.fubon.com/insurance/PIPA/index.html"
+					target="_blank">富邦產險蒐集、處理及利用個人資料告知事項</a>並同意送出資料
+			</div>
+
+
+			<p id="btn_reset" class="but02">重填</p>
+
+			<p id="btn_send" class="but04">送出</p>
+
+
+
+
+			<div style="display: none;">
+				<div id="inline1"
+					style="width: 500px; height: 400px; overflow: auto;">
+					<p class="org15b">注意事項</p>
+					<p class="bk13">本活動為保護雙方權益，凡參加本抽獎活動獲獎者，必須遵守以下注意事項：</p>
+					<p class="bk131">1.</p>
+					<p class="bk132">參加者必須依照活動網頁上的指示，與主題符合資料者，方有參與資格。</p>
+					<div style="clear: both;"></div>
+					<p class="bk131">2.</p>
+					<p class="bk132">著作權：</p>
+					<div style="clear: both;"></div>
+					<p class="bk133">i、</p>
+					<p class="bk134">投稿文章與相片必須為參選人之原創作品，不得有仿冒、抄襲、侵害他人著作權、或違反善良風俗等行為。
+					</p>
+					<div style="clear: both;"></div>
+					<p class="bk133">ii、</p>
+					<p class="bk134">如經查證有以上之情事，將取消參與者資格，獲獎者並予追回獎品或獎金，任何侵權行為將由參與者自行承擔所有衍生之相關法律與賠償責任。
+						俗等行為。</p>
+					<div style="clear: both;"></div>
+					<p class="bk131">3.</p>
+					<p class="bk132">參與者一經同意參與即視同將其作品之著作財產權無條件讓與主辦單位。主辦單位於公眾宣傳時，得使用其作品於國
+						內外進行重製、公開播送、公開上映、公開演出、公開傳輸、散布、改作、編輯之權利，不得再要求其他任何稿費或回饋。</p>
+					<div style="clear: both;"></div>
+					<p class="bk131">4.</p>
+					<p class="bk132">參與本活動者須保證所有填寫、提出之資料均為真實且正確，如有不實或不正確之情事，將被刪除取消得獎資格，主辦單位保留審查參加者資格之權利。意接受所有活動規則之規範。如有違反本活動規則，主辦單位得以取消參賽資格並依法處理。
+					</p>
+					<div style="clear: both;"></div>
+					<p class="bk131">5.</p>
+					<p class="bk132">富邦產險保留隨時終止、變更或修改本活動規則及內容之權利，贈品相關使用辦法及保固請依照官網說明為主。
+					</p>
+					<div style="clear: both;"></div>
+					<p class="bk131">6.</p>
+					<p class="bk132">本活動乃由富邦產險網站主辦，您於中獎時所提供的資料僅予主辦單位抽獎聯絡及寄出贈品使用，其內容將不會挪為他用，於活動結束後將統一納入資料銷毀作業流程。
+					</p>
+					<div style="clear: both;"></div>
+					<p class="bk131">7.</p>
+					<p class="bk132">依中華民國稅法規定，獎項金額若超過新臺幣1千元，獎項所得將列入個人年度綜合所得稅申報，故得獎人需依規定填寫並繳交相關資料方可領獎；若贈品所得總額超過新臺幣2萬元，需另先行繳納10%稅額。如不願意配合，則視為自動放棄得獎資格。</p>
+					<div style="clear: both;"></div>
+				</div>
+			</div>
+
+
+			<div style="clear: both;"></div>
+
+
+
+
+			<div id="apDiv5">
+				<p class="pop04">
+					愛車照片上傳投稿活動除了可以集氣拿卡西歐自拍神器人氣獎，<br /> 還有威秀電影票可以抽唷!!! <br />
+					另有網路投保跟預約車險到期提醒服務活動也在進行中~~~ <br /> 大家快來參加拿大獎!!!
+				</p>
+				<div style="clear: both;"></div>
+				<div class="pop03">
+					<a href="upload01.html" target="_top"
+						onmouseover="MM_swapImage('Image33','','images/pop08a.png',1)"
+						onmouseout="MM_swapImgRestore()"><img src="images/pop08.png"
+						name="Image33" width="150" height="110" border="0" id="Image33" /></a>
+				</div>
+				<div class="pop03">
+					<a href="https://www.fubon.com/insurance/b2c/content/main/new.html"
+						target="_blank"
+						onmouseover="MM_swapImage('Image34','','images/pop09a.png',1)"
+						onmouseout="MM_swapImgRestore()"><img src="images/pop09.png"
+						name="Image34" width="150" height="110" border="0" id="Image34" /></a>
+				</div>
+				<div class="pop03">
+					<a
+						href="https://b2c.518fb.com/portal/products/rsv/rsv.do?channel=03"
+						target="_blank"
+						onmouseover="MM_swapImage('Image35','','images/pop10a.png',1)"
+						onmouseout="MM_swapImgRestore()"><img src="images/pop10.png"
+						name="Image35" width="150" height="110" border="0" id="Image35" /></a>
+				</div>
+			</div>
+
+		</div>
+
+
+	</div>
+	<!-- #BeginLibraryItem "/Library/copyright.lbi" -->
+	<div class="copyright">最佳瀏覽狀態請使用 Internet Explorer 6.0 以上 1024 x
+		768 解析度 copyright Fubon Financial.All Rights Reserved.11</div>
+	<!-- #EndLibraryItem -->
+
+	<script type="text/javascript" src="lib/vic.utils.js"></script>
+	<script type="text/javascript" src="lib/vic.facebook.js"></script>
+	<script type="text/javascript" src="js/config.js"></script>
+	<script type="text/javascript" src="js/serverapi.js"></script>
+	<script type="text/javascript" src="js/pages.all.js"></script>
+	<script type="text/javascript" src="js/pages.upload02.js"></script>
+	<script type="text/javascript" src="js/upload03.js"></script>
+
+</body>
+</html>

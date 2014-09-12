@@ -1,0 +1,94 @@
+<html>
+	<head>
+		<script src="lib/vic.utils.js"></script>
+		<script src="js/serverapi.js"></script>
+		<script src="lib/jquery-1.11.1.min.js"></script>
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=8" />
+	</head>
+	<body>
+		<input id="input_upload" type="file"/>
+		<canvas id="canvas_output"></canvas>
+		<script>
+		console.log( vic.utils.browserJudge().ver );
+		console.log( 'sflksjf' );
+		
+		var input_upload = $('#input_upload' );
+		input_upload.change( function(){
+			
+			var files = input_upload[0].files;
+			
+			for( k in input_upload[0] ){
+				//console.log( k + ':' + input_upload[0][k] );
+			}
+			
+			for( k in input_upload[0].ownerDocument.all ){
+			//	console.log( k + ':' + input_upload[0].ownerDocument.[k] );
+			}
+			//console.log("DDD");
+			for( k in input_upload[0].ownerDocument.images ){
+			//	console.log( k + ':' + input_upload[0].ownerDocument.images[k] );
+			}
+			//console.log("DDD");
+			
+			var path = input_upload[0].value;
+			//var image = new Image();
+			//image.src = path;
+			//document.body.appendChild( image );
+			
+			console.log( input_upload[0].value );
+			console.log(  input_upload[0].ownerDocument.images );
+			console.log( 'input_upload: ' + input_upload[0] );
+			console.log(  'files: ' + files );
+			console.log(  'files[0]:' + files[0] );
+			if (files && files[0]) {
+				vic.utils.readImage( files[0], function( retImageName, retImage ){
+					alert("DDD");
+					image = retImage;
+					$('#canvas_output')[0].getContext('2d').drawImage(image, 0, 0);
+					var base64 = vic.utils.imageToBase64( image);
+					var encoded = encodeURIComponent( vic.utils.imageToBase64(image) )
+					console.log('length:'+encoded.length)
+					$.ajax({
+						url: 'http://192.168.2.111:8080/FuBang/Test',
+						data: {
+							cmd: 'Submit64', fbid:'vic', fbname:encodeURIComponent('vic'), comment:encodeURIComponent('hahahcontent'), image:encoded
+						},
+						type: 'POST',
+						dataType: 'json',
+						success: function(msg){
+							console.log( 'msg', msg );
+						},
+						error:function(xhr, ajaxOptions, thrownError){
+							console.log('error')
+							console.log(xhr)
+						}
+					});
+
+				}, function(){
+					alert( 'no success'  );
+				});
+			}
+		});
+		/*
+		$(function () {
+			var Sys = {};
+			var ua = navigator.userAgent.toLowerCase();
+			var s;
+			(s = ua.match(/rv:([\d.]+)\) like gecko/)) ? Sys.ie = s[1] :
+			(s = ua.match(/msie ([\d.]+)/)) ? Sys.ie = s[1] :
+			(s = ua.match(/firefox\/([\d.]+)/)) ? Sys.firefox = s[1] :
+			(s = ua.match(/chrome\/([\d.]+)/)) ? Sys.chrome = s[1] :
+			(s = ua.match(/opera.([\d.]+)/)) ? Sys.opera = s[1] :
+			(s = ua.match(/version\/([\d.]+).*safari/)) ? Sys.safari = s[1] : 0;
+			
+			if (Sys.ie) document.write('IE: ' + Sys.ie);
+			if (Sys.firefox) document.write('Firefox: ' + Sys.firefox);
+			if (Sys.chrome) document.write('Chrome: ' + Sys.chrome);
+			if (Sys.opera) document.write('Opera: ' + Sys.opera);
+			if (Sys.safari) document.write('Safari: ' + Sys.safari);
+		});
+		*/
+		</script>
+	</body>
+</html>

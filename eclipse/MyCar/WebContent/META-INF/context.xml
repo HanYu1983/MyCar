@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!-- The contents of this file will be loaded for each web application -->
+  <Context crossContext="true">
+ 
+    <!-- Default set of monitored resources -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+   
+   <Resource name="jdbc/db1" auth="Container"
+        type="javax.sql.DataSource"
+        maxActive="100" maxIdle="30"
+        username="root" 
+        password="" 
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://localhost/test?characterEncoding=UTF-8"/>
+    
+   
+    <Resource name="jdbc/websphere" auth="Container"
+    		type="javax.sql.DataSource"
+    		username="sa"
+    		password="sasa2"
+    		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDrive"
+    		maxActive="100"
+	    	maxIdle="30"
+    		url="jdbc:sqlserver://localhost:1433;databaseName=test_db;integratedSecurity=false;"
+    		SelectMethod="cursor"/>
+   
+    	
+</Context>
