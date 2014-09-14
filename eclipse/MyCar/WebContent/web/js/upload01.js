@@ -60,6 +60,7 @@ window.app = window.app || {};
 				alert( window.app.info.pleaseUploadImage );	
 				return;
 			}
+			
 			if( isUpload ){
 				alert( window.app.info.waitForImageUpload );	
 				return;
@@ -111,6 +112,12 @@ window.app = window.app || {};
 						}
 						
 						console.log("prepare send image")
+						/*
+						var newcanvas;
+						if( image.width > 800 || image.height > 600 ){
+							newcanvas = vic.utils.scaleCanvas( image )
+						}
+						*/
 						var base64 = vic.utils.imageToBase64( image);
 						serverapi.submitArticle({
 							fbid:fbid, fbname:encodeURIComponent(name), comment:encodeURIComponent(comment), image:encodeURIComponent(vic.utils.imageToBase64(image))
@@ -153,7 +160,9 @@ window.app = window.app || {};
 				
 				vic.facebook.postMessageToMyboard( fbdata,
 				function(){
-					alert( 'error' );
+					console.log("didn't login fb")
+					canClickNext = true;
+					allController.closeLoading();
 				});
 				
 				

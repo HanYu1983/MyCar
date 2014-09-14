@@ -25,7 +25,7 @@ vic.facebook = vic.facebook || {};
 	}
 	
 	function postMessageToMyboard( options, error ){
-		//login( function( response ){
+		login( function( response ){
 			FB.ui({
 				method: 'feed', // 發布貼文
 				name: options.name,
@@ -36,14 +36,14 @@ vic.facebook = vic.facebook || {};
 			},function(response){
 				options.callback( response );
 			});
-		//}, error);
+		}, error);
 	}
 	
 	function getMyData( callback, error ){
 		if( vic.facebook.debug ){
 			callback({id:"debugId", last_name: "last", first_name: "first_name"})
 		}else{
-			//login( function( response ){
+			login( function( response ){
 				FB.api(
 					"/me",
 					function (response) {
@@ -54,15 +54,15 @@ vic.facebook = vic.facebook || {};
 						}
 					}
 				);
-			//}, error);
+			}, error);
 		}
 	}
 	
 	function login( callback, error ){
-		//FB.getLoginStatus( function( res ){
-		//	if (res.status === 'connected') {
-		//		callback( res.authResponse );
-		//	}else{
+		FB.getLoginStatus( function( res ){
+			if (res.status === 'connected') {
+			callback( res.authResponse );
+		}else{
 				FB.login( function( res ){
 					if (res.authResponse) {
 						callback( res.authResponse );
@@ -71,12 +71,12 @@ vic.facebook = vic.facebook || {};
 							error( res );
 					}
 				});
-		//	}
-		//});
+			}
+		});
 	}
 	
 	function postOnlyMessageToMyboard( options, error ){
-		//login( function( response ){
+		login( function( response ){
 			FB.ui({
 				method: 'apprequests', // 發布貼文
 				message:options.message,
@@ -84,7 +84,7 @@ vic.facebook = vic.facebook || {};
 			},function(response){
 				options.callback( response );
 			});
-		//}, error);
+		}, error);
 	}
 	
 	vic.facebook.debug = false;
