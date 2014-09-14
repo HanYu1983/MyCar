@@ -141,6 +141,18 @@ vic.utils.readImage = function( file, onload, onerror, onprogress ){
 	reader.readAsDataURL(file);
 }
 
+vic.utils.scaleCanvas = function( canvas, width, height, drawWidth, drawHeight ){
+	var newcanvas = document.createElement( 'canvas' );
+	var newcanvasCtx = newcanvas.getContext( '2d' );
+	newcanvas.width = width
+	newcanvas.height = height;
+	var scaleWidth = drawWidth / canvas.width;
+	var scaleHeight = drawHeight / canvas.height;
+	newcanvasCtx.transform( scaleWidth, 0, 0, scaleHeight, 0, 0 );
+	newcanvasCtx.drawImage( canvas, 0, 0 );
+	return newcanvas;
+}
+
 vic.utils.getUrlValue = function( varname, defaultValue ){
 	var url = window.location.href;
 	if( url == undefined )	return defaultValue;

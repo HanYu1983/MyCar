@@ -122,21 +122,6 @@ window.app = window.app || {};
 									articleId = data.info.id;
 									
 									controller.nextPage( articleId );
-											/*						
-									var fbdata = window.app.info.shareFB;
-									fbdata.name = name;
-									fbdata.callback = function( res ){				
-										if( res != null ){
-											alert( window.app.info.shareFBSuccess );
-										}
-										controller.nextPage( articleId );
-									}
-									
-									vic.facebook.postMessageToMyboard( fbdata,
-									function(){
-										controller.nextPage( articleId );
-									});
-									*/
 								}else alert( window.app.info.dataUploadError);
 							},
 							error:function(){
