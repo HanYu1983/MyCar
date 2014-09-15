@@ -83,8 +83,10 @@ window.app = window.app || {};
 					allController.openLoading();
 					canClickNext = false;
 					vic.facebook.getMyData(function( res ){
+						var token = res.accessToken
 						var fbid = res.id;
 						serverapi.submitUserData( {
+							accessToken: token,
 							"fbid":fbid,
 							name:encodeURIComponent(name), 
 							gender:genderBoy, 

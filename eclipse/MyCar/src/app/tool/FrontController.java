@@ -150,7 +150,7 @@ public class FrontController extends HttpServlet{
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			DefaultResult result = new DefaultResult(e.getMessage());
+			DefaultResult result = new DefaultResult("server error");
 			result.setDebug(isDebug());
 			String jsonStr = JSON.toJSONString(result);
 			PrintWriter out = response.getWriter();

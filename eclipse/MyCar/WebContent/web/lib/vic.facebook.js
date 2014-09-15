@@ -43,11 +43,12 @@ vic.facebook = vic.facebook || {};
 		if( vic.facebook.debug ){
 			callback({id:"debugId", last_name: "last", first_name: "first_name"})
 		}else{
-			login( function( response ){
+			login( function( auth ){
 				FB.api(
 					"/me",
 					function (response) {
 						if (response && !response.error) {
+							response.accessToken = auth.accessToken
 							callback( response );
 						}else{
 							alert(response.error.message)

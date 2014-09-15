@@ -22,6 +22,7 @@ import app.model.SubmitArticleRepositoryDB;
 import app.model.UserDataRepository;
 import app.model.VoteRepository;
 import app.tool.DefaultResult;
+import app.tool.FBTool;
 import app.tool.FrontController;
 import app.tool.IConnectionProvider;
 import app.tool.IConnectionProvider.ThreadLocalConnectionProvider;
@@ -41,6 +42,9 @@ public class InjectorAction extends DefaultAction implements IInjectionProvider{
 	@Override
 	public void setController(FrontController controller){
 		super.setController(controller);
+		String fbGraphApi = this.getController().getConfig().getCustom().getString("fb-graphapi");
+		FBTool.graph_api = fbGraphApi;
+		
 		localConnectionProvider = new ThreadLocalConnectionProvider(null);
 		adminRepository = new AdminRepository( this );
 		

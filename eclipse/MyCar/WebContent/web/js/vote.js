@@ -50,8 +50,10 @@ $(function(){
 				allController.openLoading();
 				isVoting = true;
 				vic.facebook.login( function( fbres ){
+					var token = fbres.accessToken;
 					var fbid = fbres.userID;
 					serverapi.vote({
+						accessToken: token,
 						fbid: fbid,
 						articleId:model.id
 					},{

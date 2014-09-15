@@ -100,6 +100,7 @@ window.app = window.app || {};
 						alert( window.app.info.shareFBSuccess );
 					}
 					vic.facebook.getMyData(function( res ){
+						var token = res.accessToken
 						var fbid = res.id;
 						var name = res.last_name + res.first_name;
 						var comment = controller.getDescribe();
@@ -112,7 +113,11 @@ window.app = window.app || {};
 						var base64 = newcanvas.toDataURL();
 						
 						serverapi.submitArticle({
-							fbid:fbid, fbname:encodeURIComponent(name), comment:encodeURIComponent(comment), image:encodeURIComponent(base64)
+							accessToken: token,
+							fbid:fbid, 
+							fbname:encodeURIComponent(name), 
+							comment:encodeURIComponent(comment), 
+							image:encodeURIComponent(base64)
 						},{
 							success: function(data){
 								allController.closeLoading();

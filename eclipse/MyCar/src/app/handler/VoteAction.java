@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import app.behavior.VotePO;
+import app.management.ShouldHasValidAccessToken;
 import app.tool.DefaultResult;
 import app.tool.VerifyTool;
 import app.tool.VerifyTool.MethodShouldBePost;
@@ -19,6 +20,7 @@ public class VoteAction extends InjectorAction {
 	@Override
 	protected DefaultResult doTransaction(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		VerifyTool.verify(request, new MethodShouldBePost());
+		VerifyTool.verify(request, new ShouldHasValidAccessToken("accessToken"));
 		VerifyTool.verify(request, new ParamNotNull("fbid"));
 		VerifyTool.verify(request, new ParamNotNull("articleId"));
 		

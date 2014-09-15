@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import app.behavior.SubmitArticlePO;
+import app.management.ShouldHasValidAccessToken;
 import app.model.Tool;
 import app.tool.DefaultResult;
 import app.tool.VerifyTool;
@@ -22,6 +23,7 @@ public class SubmitActionBase64StoreText extends InjectorAction {
 	@Override
 	protected DefaultResult doTransaction(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		VerifyTool.verify(request, new MethodShouldBePost());
+		VerifyTool.verify(request, new ShouldHasValidAccessToken("accessToken"));
 		VerifyTool.verify(request, new ParamNotNull("image"));
 		VerifyTool.verify(request, new ParamNotNull("comment"));
 		VerifyTool.verify(request, new ParamNotNull("fbid"));
