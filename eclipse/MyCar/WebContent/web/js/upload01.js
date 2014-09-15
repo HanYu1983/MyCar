@@ -111,17 +111,11 @@ window.app = window.app || {};
 							return;
 						}
 						
-						//console.log("prepare send image")
-						
-						//var newcanvas;
-						//if( image.width > window.app.imageSize.x || image.height > window.app.imageSize.y ){
-						var newcanvas = vic.utils.drawImageToCanvas( image, {x:window.app.imageSize.x, y:window.app.imageSize.y}, 0 )
-						//}
-						
-						//var base64 = vic.utils.imageToBase64( image);
+						var newcanvas = vic.utils.drawImageToCanvas( image, {width:window.app.imageSize.x, height:window.app.imageSize.y}, 0 )
 						var base64 = newcanvas.toDataURL();
+						
 						serverapi.submitArticle({
-							fbid:fbid, fbname:encodeURIComponent(name), comment:encodeURIComponent(comment), image:encodeURIComponent(vic.utils.imageToBase64(image))
+							fbid:fbid, fbname:encodeURIComponent(name), comment:encodeURIComponent(comment), image:encodeURIComponent(base64)
 						},{
 							success: function(data){
 								allController.closeLoading();
