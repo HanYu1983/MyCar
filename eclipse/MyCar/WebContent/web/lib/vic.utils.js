@@ -115,7 +115,11 @@ vic.utils.imageToBase64 = function( image ){
 	var canvas = document.createElement( 'canvas' );
 	canvas.width = image.width;
 	canvas.height = image.height;
-	canvas.getContext( '2d' ).drawImage( image, 0, 0 );
+	try{
+		canvas.getContext( '2d' ).drawImage( image, 0, 0 );
+	}catch( e ){
+		alert('please upload image');
+	}
 	return canvas.toDataURL();
 }
 
