@@ -25,7 +25,6 @@ var pages = pages || {};
 				div_loading.fadeOut( 200 );
 			},
 			openPeopleDetail:function( articleId, type, onCloseClick, onVoteClick, onFacebookShareComplete ){
-				console.log( 'onVoteClick', onVoteClick );
 				window.app.voteInfoOpen( {articleId:articleId, type:type, 
 				onCloseClick:function(){
 					onCloseClick();

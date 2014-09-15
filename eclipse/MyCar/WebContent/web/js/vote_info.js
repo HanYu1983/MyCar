@@ -2,8 +2,6 @@ $(function() {
 	window.app.voteInfoOpen = open;
 	
 	function open( options ){
-		
-		console.log( options );
 		var articleId = options.articleId;
 		var type = options.type;
 		var isFBSharing = false;
@@ -59,13 +57,7 @@ $(function() {
 										
 										if(data.success){
 											alert(window.app.info.voteOk)
-											console.log( 'options.onVoteClick', options.onVoteClick );
 											shareToFb( options.onVoteClick );
-											/*
-											if( options.onVoteClick != undefined ){
-												options.onVoteClick();
-											}*/
-											//window.location.href = 'upload03.html?articleId=' + articleId;
 										}else{
 											alert(window.app.info.alreadyVote)
 										}

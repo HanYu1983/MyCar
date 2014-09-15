@@ -63,8 +63,6 @@ $(function(){
 						articleId:model.id
 					},{
 						success:function(data){
-							console.log( 'votesuccess: ');
-							console.log( data);
 							isVoting = false;
 							allController.closeLoading();
 							if(data.success){
@@ -115,7 +113,6 @@ $(function(){
 		
 		function shareToFb( model, callback ){
 			var shareUrl = serverapi.getImageUrlWithHost(window.app.host ,{articleId:model.id, outputType:"fb"})
-			console.log( model);
 			vic.facebook.postMessageToMyboard({
 				name : model.fbname,
 				link : window.app.indexhtml,

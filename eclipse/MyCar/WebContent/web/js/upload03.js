@@ -16,7 +16,6 @@ window.app = window.app || {};
 		var allController = pages.allController( $('body' ) );
 		
 		var canClickNext = true;
-		console.log( 'userdatastr', userdatastr)
 		
 		if( userdatastr.length != 0 ){
 			userdatastr = decodeURIComponent( userdatastr );

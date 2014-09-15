@@ -13,7 +13,6 @@ serverapi = {};
 	}
 	
 	function remoteAjax(data, callback){
-		console.log('remote')
 		$.ajax({
 			url: getAPIURL(),
 			data: data,
@@ -22,7 +21,6 @@ serverapi = {};
 			processData: false,
 			dataType: 'jsonp',
 			success: function(msg){
-				console.log( msg );
 				if(callback.success)
 					callback.success(msg);
 			},
@@ -40,7 +38,6 @@ serverapi = {};
 			type: 'POST',
 			dataType: 'json',
 			success: function(msg){
-				console.log( 'msg', msg );
 				if(callback.success) 
 					callback.success(msg);
 			},

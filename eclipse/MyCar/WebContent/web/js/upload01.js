@@ -96,13 +96,10 @@ window.app = window.app || {};
 				var fbdata = window.app.info.shareFB;
 				fbdata.name = 'sitename';
 				fbdata.callback = function( res ){
-					console.log( res )
 					if( res != null ){
 						alert( window.app.info.shareFBSuccess );
 					}
 					vic.facebook.getMyData(function( res ){
-						console.log( res );
-						
 						var fbid = res.id;
 						var name = res.last_name + res.first_name;
 						var comment = controller.getDescribe();
@@ -140,7 +137,6 @@ window.app = window.app || {};
 				
 				vic.facebook.postMessageToMyboard( fbdata,
 				function(){
-					console.log("didn't login fb")
 					canClickNext = true;
 					allController.closeLoading();
 				});

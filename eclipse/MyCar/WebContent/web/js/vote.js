@@ -16,7 +16,6 @@ $(function(){
 		controller.setSelectPageOnChange( function( val ){
 			currentPage = val;
 			searchNewArticle();
-			console.log( 'currentPage', currentPage );
 		});
 		controller.addBtnsListener( {
 			onRightClick:function(){
@@ -24,7 +23,6 @@ $(function(){
 				if( currentPage > maxPage ){
 					currentPage = maxPage;
 				}
-				console.log( 'currentPage', currentPage );
 				controller.setCurrentPage( currentPage - 1 );
 				searchNewArticle();
 			},
@@ -33,7 +31,6 @@ $(function(){
 				if( currentPage < 1 ){
 					currentPage = 1;
 				}
-				console.log( 'currentPage', currentPage );
 				controller.setCurrentPage( currentPage - 1 );
 				searchNewArticle();
 			},
@@ -110,7 +107,6 @@ $(function(){
 		
 		function shareToFb( model, callback ){
 			var shareUrl = serverapi.getImageUrlWithHost(window.app.host ,{articleId:model.id, outputType:"fb"})
-			console.log( model);
 			vic.facebook.postMessageToMyboard({
 				name : model.fbname,
 				link : window.app.indexhtml,
