@@ -45,10 +45,9 @@ public class FrontController extends HttpServlet{
 
 	public void setConfig(FrontControllerConfig config) {
 		this.config = config;
-		prepareTransaction(config);
 	}
 
-	private void prepareTransaction(FrontControllerConfig config) {
+	private void prepareTransaction(FrontControllerConfig config)throws ServletException {
 		actions.clear();
 		for (String key : config.getActions().keySet()) {
 			String actionClzStr = config.getActions().get(key);
@@ -58,9 +57,7 @@ public class FrontController extends HttpServlet{
 				action.setController(this);
 				actions.put(key, action);
 			} catch (Exception e) {
-				// nothing to do
-				log("[FrontController][prepareTransaction]no class:"
-						+ actionClzStr);
+				throw new ServletException("no action : "+key+" > "+ actionClzStr);
 			}
 		}
 	}
@@ -87,7 +84,8 @@ public class FrontController extends HttpServlet{
 			FrontControllerConfig config = JSON.parseObject(configStr,
 					FrontControllerConfig.class);
 			this.setConfig(config);
-
+			this.prepareTransaction(config);
+			
 		} catch (IOException e) {
 			throw new ServletException(e);
 		}
