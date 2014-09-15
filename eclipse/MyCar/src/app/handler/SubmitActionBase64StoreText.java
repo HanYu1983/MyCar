@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import app.behavior.SubmitArticlePO;
-import app.management.ShouldHasValidAccessToken;
+import app.model.ShouldHasValidAccessToken;
 import app.model.Tool;
 import app.tool.DefaultResult;
 import app.tool.VerifyTool;

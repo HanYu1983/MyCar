@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import app.behavior.VotePO;
-import app.management.ShouldHasValidAccessToken;
+import app.model.ShouldHasValidAccessToken;
 import app.tool.DefaultResult;
 import app.tool.VerifyTool;
 import app.tool.VerifyTool.MethodShouldBePost;

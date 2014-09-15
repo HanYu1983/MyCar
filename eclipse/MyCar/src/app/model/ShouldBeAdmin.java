@@ -1,4 +1,4 @@
-package app.management;
+package app.model;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

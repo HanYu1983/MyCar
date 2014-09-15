@@ -3,7 +3,7 @@ package app.handler;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import app.management.ShouldBeAdmin;
+import app.model.ShouldBeAdmin;
 import app.tool.DefaultResult;
 import app.tool.VerifyTool;
 import app.tool.VerifyTool.MethodShouldBePost;
@@ -17,8 +17,8 @@ public class VerifyArticleAction extends InjectorAction {
 	}
 	@Override
 	protected DefaultResult doTransaction(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		VerifyTool.verify(request, new ShouldBeAdmin(request.getSession(true)));
 		VerifyTool.verify(request, new MethodShouldBePost());
+		VerifyTool.verify(request, new ShouldBeAdmin(request.getSession(true)));
 		VerifyTool.verify(request, new ParamShouldBeBoolean("verified"));
 		VerifyTool.verify(request, new ParamNotNull("articleId"));
 		String articleId = request.getParameter("articleId");

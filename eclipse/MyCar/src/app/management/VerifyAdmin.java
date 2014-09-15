@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import app.handler.InjectorAction;
+import app.model.ShouldBeAdmin;
 import app.model.Tool;
 import app.tool.DefaultResult;
 import app.tool.VerifyTool;

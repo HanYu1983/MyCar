@@ -1,4 +1,4 @@
-package app.management;
+package app.model;
 
 import java.io.IOException;
 
