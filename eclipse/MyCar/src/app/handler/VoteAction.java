@@ -19,12 +19,16 @@ public class VoteAction extends InjectorAction {
 	}
 	@Override
 	protected DefaultResult doTransaction(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		VerifyTool.verify(request, new MethodShouldBePost());
-		VerifyTool.verify(request, new ShouldHasValidAccessToken("accessToken"));
-		VerifyTool.verify(request, new ParamNotNull("fbid"));
+		if( this.getController().isDebug() ){
+			// nothing to do
+		}else{
+			VerifyTool.verify(request, new MethodShouldBePost());
+		}
+		ShouldHasValidAccessToken verifyAccessToken = new ShouldHasValidAccessToken("accessToken");
+		VerifyTool.verify(request, verifyAccessToken);
 		VerifyTool.verify(request, new ParamNotNull("articleId"));
 		
-		String fbid = request.getParameter("fbid");
+		String fbid = verifyAccessToken.getFbid();
 		String articleId = request.getParameter("articleId");
 		
 		VotePO vote = new VotePO();

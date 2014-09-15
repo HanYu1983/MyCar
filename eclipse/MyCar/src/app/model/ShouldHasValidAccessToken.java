@@ -13,6 +13,8 @@ import com.alibaba.fastjson.JSONObject;
 
 public class ShouldHasValidAccessToken extends ParamNotNull {
 	
+	private JSONObject authRes;
+	
 	public ShouldHasValidAccessToken(String name) {
 		super(name);
 	}
@@ -22,8 +24,8 @@ public class ShouldHasValidAccessToken extends ParamNotNull {
 		String token = request.getParameter(name);
 		try {
 			String ret = FBTool.me(token);
-			JSONObject obj = (JSONObject)JSON.parse(ret);
-			boolean isError = obj.containsKey("error");
+			authRes = (JSONObject)JSON.parse(ret);
+			boolean isError = authRes.containsKey("error");
 			if(isError){
 				throw new IOException("has fb error");
 			}
@@ -32,6 +34,10 @@ public class ShouldHasValidAccessToken extends ParamNotNull {
 			throw new VerifyException("invalid access token");
 		}
 		
+	}
+	
+	public String getFbid(){
+		return authRes.getString("id");
 	}
 
 }

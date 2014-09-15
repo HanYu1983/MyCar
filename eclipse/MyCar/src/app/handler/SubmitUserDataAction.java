@@ -12,6 +12,7 @@ import app.behavior.UserDataPO;
 import app.model.ShouldHasValidAccessToken;
 import app.model.Tool;
 import app.tool.DefaultResult;
+import app.tool.FrontController;
 import app.tool.VerifyTool;
 import app.tool.VerifyTool.MethodShouldBePost;
 import app.tool.VerifyTool.ParamNotNull;
@@ -21,20 +22,31 @@ import com.alibaba.fastjson.JSON;
 
 public class SubmitUserDataAction extends InjectorAction {
 
+	private int cookieDay;
 	@Override
 	protected boolean shouldConnectDB(){
 		return true;
 	}
 	
 	@Override
+	public void setController(FrontController controller) {
+		super.setController(controller);
+		cookieDay = this.getController().getConfig().getCustom().getIntValue("cookie-day");
+	}
+
+	@Override
 	protected DefaultResult doTransaction(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		VerifyTool.verify(request, new MethodShouldBePost());
-		VerifyTool.verify(request, new ShouldHasValidAccessToken("accessToken"));
-		VerifyTool.verify(request, new ParamNotNull("fbid"));
+		if( this.getController().isDebug() ){
+			// nothing to do
+		}else{
+			VerifyTool.verify(request, new MethodShouldBePost());
+		}
+		ShouldHasValidAccessToken verifyAccessToken = new ShouldHasValidAccessToken("accessToken");
+		VerifyTool.verify(request, verifyAccessToken);
 		VerifyTool.verify(request, new ParamNotNull("articleId"));
 		VerifyTool.verify(request, new ParamShouldBeValue("submitType", new String[]{"submit", "vote"}));
 		
-		String fbid = request.getParameter("fbid");
+		String fbid = verifyAccessToken.getFbid();
 		String name = request.getParameter("name");
 		String gender = request.getParameter("gender");
 		String phone = request.getParameter("phone");
@@ -65,7 +77,7 @@ public class SubmitUserDataAction extends InjectorAction {
 		String encoded = URLEncoder.encode(jsonStr, "utf8");
 		Cookie userCookie = new Cookie("userdata", encoded);
 		userCookie.setComment("user comment");
-		userCookie.setMaxAge(24*60*60);
+		userCookie.setMaxAge(cookieDay* 24*60*60);
 	    userCookie.setPath("/");
 	    response.addCookie(userCookie);
 	    

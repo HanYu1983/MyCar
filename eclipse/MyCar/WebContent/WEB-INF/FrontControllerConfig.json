@@ -30,6 +30,7 @@
     			"username":"sa",
     			"password":"sa"
     		},
+    		"cookie-day": 1,
     		"fb-graphapi": "https://graph.facebook.com/v2.1/",
     		"fb-share-size":[510,335]
     }

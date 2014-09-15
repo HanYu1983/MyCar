@@ -22,14 +22,18 @@ public class SubmitActionBase64StoreText extends InjectorAction {
 	
 	@Override
 	protected DefaultResult doTransaction(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		VerifyTool.verify(request, new MethodShouldBePost());
-		VerifyTool.verify(request, new ShouldHasValidAccessToken("accessToken"));
+		if( this.getController().isDebug() ){
+			// nothing to do
+		}else{
+			VerifyTool.verify(request, new MethodShouldBePost());
+		}
+		ShouldHasValidAccessToken verifyAccessToken = new ShouldHasValidAccessToken("accessToken");
+		VerifyTool.verify(request, verifyAccessToken);
 		VerifyTool.verify(request, new ParamNotNull("image"));
 		VerifyTool.verify(request, new ParamNotNull("comment"));
-		VerifyTool.verify(request, new ParamNotNull("fbid"));
 		VerifyTool.verify(request, new ParamNotNull("fbname"));
 		
-		String fbid = request.getParameter("fbid");
+		String fbid = verifyAccessToken.getFbid();
 		String fbname = request.getParameter("fbname");
 		String comment = request.getParameter("comment");
 		String image64 = request.getParameter("image");
