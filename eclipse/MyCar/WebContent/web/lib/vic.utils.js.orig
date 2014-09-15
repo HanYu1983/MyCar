@@ -157,44 +157,11 @@ vic.utils.scaleCanvas = function( canvas, width, height, drawWidth, drawHeight )
 	return newcanvas;
 }
 
-vic.utils.centerAndScaleImage = function( imageWidth, imageHeight, containerWidth, containerHeight ){
-	var ratio = imageWidth / imageHeight;
-	var toRatio = containerWidth / containerHeight;
-	var fac;
-	if ( ratio > toRatio ) {
-		fac = containerWidth / imageWidth;
-	}else {
-		fac = containerHeight / imageHeight;
-	}
-	imageWidth = imageWidth * fac;
-	imageHeight = imageHeight * fac;
-	var offsetX = ( containerWidth - imageWidth ) / 2;
-	var offsetY = ( containerHeight - imageHeight ) / 2;
-	return {scale:fac, offset:{x:offsetX, y:offsetY}};
-};
-/*
-var image = new Image();
-image.src= '001.jpg';
-image.onload = function(){
-	var canvas = vic.utils.drawImageToCanvas( image, {width:300, height:300}, 0 );
-	document.body.appendChild( canvas );
-};
-*/
-vic.utils.drawImageToCanvas = function(image, target, color ){
-	var scaleObj = vic.utils.centerAndScaleImage( image.width, image.height, target.width, target.height );
-	var newcanvas = document.createElement( 'canvas' );
-	var newcanvasCtx = newcanvas.getContext( '2d' );
-	newcanvas.width = target.width;
-	newcanvas.height = target.height;
-	newcanvasCtx.fillStyle = color;
-	newcanvasCtx.fillRect( 0, 0, newcanvas.width, newcanvas.height );
-	newcanvasCtx.transform( scaleObj.scale, 0, 0, scaleObj.scale, scaleObj.offset.x, scaleObj.offset.y );
-	newcanvasCtx.drawImage( image, 0, 0 );
-	newcanvasCtx.setTransform( 1, 0, 0, 1, 0, 0 );
-	return newcanvas;
-}
-
+<<<<<<< HEAD
 vic.utils.getUrlValue = function( varname, defaultValue ){
+=======
+vic.utils.getUrlValue  = function( varname, defaultValue ){
+>>>>>>> 8e57f87791df36b7d148c87fb8191bc0211d2332
 	var url = window.location.href;
 	if( url == undefined )	return defaultValue;
 	var qparts = url.split("?");

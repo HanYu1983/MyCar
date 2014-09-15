@@ -5,6 +5,7 @@ window.app.local = false;
 window.app.indexhtml = 'www.yahoo.com.tw'
 window.app.fbappid = '280619272145943'
 window.app.fbchannel = 'http://localhost:9000/test/'
+window.app.imageSize = {x:470, y:299};
 
 window.app.info = {};
 window.app.info.pleaseUploadImage = '請您上傳一張圖片';
