@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import app.behavior.SubmitArticlePO;
 import app.model.Tool;
 import app.tool.DefaultResult;
-import app.tool.FrontController;
 import app.tool.ImageTool;
 import app.tool.VerifyTool;
 import app.tool.VerifyTool.ParamNotNull;
@@ -28,8 +27,8 @@ public class GetImageActionDB extends InjectorAction {
 	}
 	
 	@Override
-	public void setController(FrontController controller){
-		super.setController(controller);
+	public void onInitTransaction() throws Exception {
+		super.onInitTransaction();
 		JSONArray ary = this.getController().getConfig().getCustom().getJSONArray("fb-share-size");
 		int w = ary.getInteger(0);
 		int h = ary.getInteger(1);

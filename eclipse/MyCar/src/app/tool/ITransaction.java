@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 public interface ITransaction {
 	
 	void onDestoryTransaction();
-	
+	void onInitTransaction() throws Exception;
 	ITransaction prototype();
 	FrontController getController();
 	void setController(FrontController controller);
@@ -36,7 +36,13 @@ public interface ITransaction {
 		
 		@Override
 		public Object clone() throws CloneNotSupportedException {
-			return super.clone();
+			ITransaction clone = (ITransaction) super.clone();
+			try {
+				clone.onInitTransaction();
+			} catch (Exception e) {
+				// nothing todo
+			}
+			return clone;
 		}
 
 		public void onDestoryTransaction() {
@@ -56,6 +62,10 @@ public interface ITransaction {
 		
 		public boolean isNeedCache(){
 			return true;
+		}
+
+		public void onInitTransaction() throws Exception {
+		
 		}
 	}
 }

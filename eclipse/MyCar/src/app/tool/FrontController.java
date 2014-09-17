@@ -43,8 +43,9 @@ public class FrontController extends HttpServlet{
 		return request.getMethod().equals("POST");
 	}
 
-	public void setConfig(FrontControllerConfig config) {
+	public void setConfig(FrontControllerConfig config)throws ServletException {
 		this.config = config;
+		prepareTransaction(this.config);
 	}
 
 	private void prepareTransaction(FrontControllerConfig config)throws ServletException {
@@ -55,6 +56,7 @@ public class FrontController extends HttpServlet{
 				Class<?> clz = Class.forName(actionClzStr);
 				ITransaction action = (ITransaction) clz.newInstance();
 				action.setController(this);
+				action.onInitTransaction();
 				actions.put(key, action);
 			} catch (Exception e) {
 				throw new ServletException("no action : "+key+" > "+ actionClzStr);
@@ -84,7 +86,6 @@ public class FrontController extends HttpServlet{
 			FrontControllerConfig config = JSON.parseObject(configStr,
 					FrontControllerConfig.class);
 			this.setConfig(config);
-			this.prepareTransaction(config);
 			
 		} catch (IOException e) {
 			throw new ServletException(e);

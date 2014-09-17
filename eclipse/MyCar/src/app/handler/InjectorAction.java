@@ -23,7 +23,6 @@ import app.model.UserDataRepository;
 import app.model.VoteRepository;
 import app.tool.DefaultResult;
 import app.tool.FBTool;
-import app.tool.FrontController;
 import app.tool.IConnectionProvider;
 import app.tool.IConnectionProvider.ThreadLocalConnectionProvider;
 import app.tool.ITransaction;
@@ -40,8 +39,7 @@ public class InjectorAction extends DefaultAction implements IInjectionProvider{
 	private ThreadLocalConnectionProvider localConnectionProvider;
 	
 	@Override
-	public void setController(FrontController controller){
-		super.setController(controller);
+	public void onInitTransaction() throws Exception {
 		String fbGraphApi = this.getController().getConfig().getCustom().getString("fb-graphapi");
 		FBTool.graph_api = fbGraphApi;
 		
@@ -58,15 +56,6 @@ public class InjectorAction extends DefaultAction implements IInjectionProvider{
 			userDataRepository = new UserDataRepository(this);
 			submitArticleRepository = new SubmitArticleRepositoryDB( this );
 		}
-	}
-	
-	// 覆寫它確保子類clone的安全性
-	@Override
-	public Object clone() throws CloneNotSupportedException {
-		InjectorAction clone = (InjectorAction)super.clone();
-		// deep copy
-		clone.setController(this.getController());
-		return clone;
 	}
 	
 	// 所有action都是單例。盡可能的節省記憶體

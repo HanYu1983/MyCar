@@ -12,7 +12,6 @@ import app.behavior.UserDataPO;
 import app.model.ShouldHasValidAccessToken;
 import app.model.Tool;
 import app.tool.DefaultResult;
-import app.tool.FrontController;
 import app.tool.VerifyTool;
 import app.tool.VerifyTool.MethodShouldBePost;
 import app.tool.VerifyTool.ParamNotNull;
@@ -29,8 +28,8 @@ public class SubmitUserDataAction extends InjectorAction {
 	}
 	
 	@Override
-	public void setController(FrontController controller) {
-		super.setController(controller);
+	public void onInitTransaction() throws Exception {
+		super.onInitTransaction();
 		cookieDay = this.getController().getConfig().getCustom().getIntValue("cookie-day");
 	}
 
