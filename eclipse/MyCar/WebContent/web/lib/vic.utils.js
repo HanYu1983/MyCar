@@ -258,6 +258,13 @@ vic.utils.browserJudge = function(){
 }
 
 
-
+vic.utils.isChinese = function(s){
+	for(var i = 0; i < s.length; i++) {
+		var notChinese = s.charCodeAt(i) < 0x4E00 || s.charCodeAt(i) > 0x9FA5;
+		if( notChinese )
+			return false
+	}
+	return true
+}
 
 

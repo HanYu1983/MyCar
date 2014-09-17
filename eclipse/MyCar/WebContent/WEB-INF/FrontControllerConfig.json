@@ -23,13 +23,13 @@
     
     "custom":{
     		"db":"mssql",
-    		"connection-type":"manual",
+    		"connection-type":"jndi",
     		"connection-jndi":"jdbc/websphere",
     		"connection-manual":{
     			"driverClassName":"com.microsoft.sqlserver.jdbc.SQLServerDriver",
     			"url":"jdbc:sqlserver://localhost:1433;databaseName=test_db;integratedSecurity=false;",
-    			"username":"admin",
-    			"password":"1111"
+    			"username":"sa",
+    			"password":"sa"
     		},
     		"cookie-day": 1,
     		"fb-graphapi": "https://graph.facebook.com/v2.1/",

@@ -41,13 +41,18 @@ vic.facebook = vic.facebook || {};
 	
 	function getMyData( callback, error ){
 		if( vic.facebook.debug ){
-			callback({id:"debugId", last_name: "last", first_name: "first_name"})
+			callback({id:"debugId", last_name: "中文", first_name: "姓"})
 		}else{
 			login( function( auth ){
 				FB.api(
 					"/me",
 					function (response) {
 						if (response && !response.error) {
+							if( vic.utils.isChinese(response.last_name)  ==  false){
+								var tmp = response.last_name
+								response.last_name = response.first_name
+								response.first_name = tmp
+							}						
 							response.accessToken = auth.accessToken
 							callback( response );
 						}else{

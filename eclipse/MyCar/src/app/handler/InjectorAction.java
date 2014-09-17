@@ -3,7 +3,6 @@ package app.handler;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -115,8 +114,7 @@ public class InjectorAction extends DefaultAction implements IInjectionProvider{
 			String connectionType = config.getString("connection-type");
 			if( connectionType.equalsIgnoreCase("jndi") ){
 				InitialContext envContext = new InitialContext();
-				Context initContext = (Context) envContext.lookup("java:/comp/env");
-				DataSource datasource = (DataSource) initContext.lookup(config.getString("connection-jndi"));
+				DataSource datasource = (DataSource) envContext.lookup(config.getString("connection-jndi"));
 				return datasource.getConnection();
 			}else{
 				JSONObject manualConfig = config.getJSONObject("connection-manual");

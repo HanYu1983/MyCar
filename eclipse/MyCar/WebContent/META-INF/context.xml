@@ -12,17 +12,13 @@
         password="" 
         driverClassName="com.mysql.jdbc.Driver"
         url="jdbc:mysql://localhost/test?characterEncoding=UTF-8"/>
-    
-   
-    <Resource name="jdbc/websphere" auth="Container"
-    		type="javax.sql.DataSource"
-    		username="sa"
-    		password="sasa2"
-    		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDrive"
-    		maxActive="100"
-	    	maxIdle="30"
-    		url="jdbc:sqlserver://localhost:1433;databaseName=test_db;integratedSecurity=false;"
-    		SelectMethod="cursor"/>
-   
+        
+   <Resource name="jdbc/websphere" auth="Container"
+        type="javax.sql.DataSource"
+        maxActive="100" maxIdle="30"
+        username="sa" 
+        password="sa"
+        driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDrive"
+        url="jdbc:mysql://localhost/test_db?characterEncoding=UTF-8"/>
     	
 </Context>
