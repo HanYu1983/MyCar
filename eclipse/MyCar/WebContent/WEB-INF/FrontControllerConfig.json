@@ -28,8 +28,8 @@
     		"connection-manual":{
     			"driverClassName":"com.microsoft.sqlserver.jdbc.SQLServerDriver",
     			"url":"jdbc:sqlserver://localhost:1433;databaseName=test_db;integratedSecurity=false;",
-    			"username":"sa",
-    			"password":"sa"
+    			"username":"admin",
+    			"password":"1111"
     		},
     		"cookie-day": 1,
     		"fb-graphapi": "https://graph.facebook.com/v2.1/",

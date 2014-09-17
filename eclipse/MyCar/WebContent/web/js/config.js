@@ -3,7 +3,7 @@ window.app.host = 'http://192.168.2.111:8080/FuBang/'
 window.app.sqlType = 'mysql';
 window.app.local = false;
 window.app.indexhtml = 'www.yahoo.com.tw'
-window.app.fbappid = '280619272145943'
+window.app.fbappid = '705619549508753'
 window.app.fbchannel = 'http://localhost:9000/test/'
 window.app.imageSize = {x:470, y:299};
 
