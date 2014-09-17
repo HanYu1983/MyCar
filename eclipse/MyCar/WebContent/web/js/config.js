@@ -31,7 +31,7 @@ window.app.info.defaultName = '同身份證';
 
 window.app.info.shareFB = {
 	caption : '永保安康保富邦My Car, My Life !',
-	description : '參加愛⾞車照⽚片上傳活動,除了可以集氣拿卡西歐 ⾃自拍神器,還有威秀電影票可以抽唷!!!',
+	description : '參加愛車照片上傳活動，除了可以集氣拿卡西歐自拍神器，還有威秀電影票可以抽唷!!!',
 	link : window.app.host, 
 	picture : window.app.host + 'web/images/100x100.jpg'
 }
