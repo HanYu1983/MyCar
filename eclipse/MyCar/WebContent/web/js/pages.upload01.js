@@ -10,9 +10,21 @@ var pages = pages || {};
 		var ta_describe = jdom.find('#ta_describe' )
 		var btn_reset = jdom.find('#btn_reset' )
 		var btn_next = jdom.find('#btn_next')
+		var accessToken = $('#accessToken' )
+		var fbname = $('#fbname' )
+		var comment = $('#comment' )
 		txt_upload.val( '' );
 		
 		return {
+			setAccessToken:function( ac ){
+				accessToken.val( ac );
+			},
+			setFbname:function( fbname ){
+				fbname.val( fbname );
+			},
+			setComment:function( comment ){
+				comment.val( comment );
+			},
 			setInputUploadChange:function( fn ){
 				input_upload.change( function(){
 					fn( input_upload );
@@ -40,6 +52,9 @@ var pages = pages || {};
 			},
 			getDescribe:function(){
 				return ta_describe.val();
+			},
+			getInputUploadValue:function(){
+				return txt_upload.val();
 			},
 			nextPage:function( articleId ){		
 				window.location.href = 'upload02.html?articleId=' + articleId;

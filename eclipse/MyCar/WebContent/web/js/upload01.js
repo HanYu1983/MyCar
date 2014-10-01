@@ -56,7 +56,8 @@ window.app = window.app || {};
 		});
 		
 		controller.setBtnNextClick( function(){
-			/*if( image == undefined ){
+			/*
+			if( image == undefined ){
 				alert( window.app.info.pleaseUploadImage );	
 				return;
 			}
@@ -64,7 +65,12 @@ window.app = window.app || {};
 			if( isUpload ){
 				alert( window.app.info.waitForImageUpload );	
 				return;
-			}*/
+			}
+			*/
+			if( controller.getInputUploadValue() == '' ){
+				alert( window.app.info.pleaseUploadImage );	
+			}
+			controller.setTextUploadValue( controller.getInputUploadValue() );
 			
 			if( !canClickNext )	{
 				alert( window.app.info.pleaseWaitForFacebook );
@@ -108,9 +114,9 @@ window.app = window.app || {};
 							alert( window.app.info.over300Word );
 							return;
 						}
-						$('#accessToken' ).val( token );
-						$('#fbname' ).val( encodeURIComponent(name) );
-						$('#comment' ).val( encodeURIComponent(comment) );
+						controller.setAccessToken( token );
+						controller.setFbname( encodeURIComponent(name) );
+						controller.setComment( encodeURIComponent(comment) );
 						document.uploadForm.submit();
 					}, function(){
 						canClickNext = true;
@@ -123,9 +129,6 @@ window.app = window.app || {};
 					canClickNext = true;
 					allController.closeLoading();
 				});
-				
-				
-				
 			}
 		});
 	}
