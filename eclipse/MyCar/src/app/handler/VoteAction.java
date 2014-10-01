@@ -22,6 +22,7 @@ public class VoteAction extends InjectorAction {
 		if( this.getController().isDebug() ){
 			// nothing to do
 		}else{
+			VerifyTool.verify(request, new VerifyEventDate(super.getEventEndOfDate()));
 			VerifyTool.verify(request, new MethodShouldBePost());
 		}
 		ShouldHasValidAccessToken verifyAccessToken = new ShouldHasValidAccessToken("accessToken");

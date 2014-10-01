@@ -13,12 +13,12 @@
         driverClassName="com.mysql.jdbc.Driver"
         url="jdbc:mysql://localhost/test?characterEncoding=UTF-8"/>
         
-   <Resource name="jdbc/websphere" auth="Container"
+   <Resource name="jdbc/db2" auth="Container"
         type="javax.sql.DataSource"
         maxActive="100" maxIdle="30"
         username="sa" 
         password="sa"
         driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDrive"
-        url="jdbc:mysql://localhost/test_db?characterEncoding=UTF-8"/>
+        url="jdbc:sqlserver://localhost:1433;databaseName=test_db;integratedSecurity=false;"/>
     	
 </Context>

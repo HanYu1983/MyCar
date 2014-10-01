@@ -2,6 +2,9 @@ package app.handler;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.naming.InitialContext;
 import javax.servlet.http.HttpServletRequest;
@@ -36,9 +39,13 @@ public class InjectorAction extends DefaultAction implements IInjectionProvider{
 	private IUserDataRepository userDataRepository;
 	private IAdminRepository adminRepository;
 	private ThreadLocalConnectionProvider localConnectionProvider;
+	private Date endOfDate;
 	
 	@Override
 	public void onInitTransaction() throws Exception {
+		String dateStr = this.getController().getConfig().getCustom().getString("event-end-of-date");
+		endOfDate = new SimpleDateFormat("yyyy/MM/dd", Locale.TAIWAN).parse(dateStr);
+		
 		String fbGraphApi = this.getController().getConfig().getCustom().getString("fb-graphapi");
 		FBTool.graph_api = fbGraphApi;
 		
@@ -84,7 +91,11 @@ public class InjectorAction extends DefaultAction implements IInjectionProvider{
 		}
 		
 		try {
-			return this.doTransaction(request, response);
+			DefaultResult ret =  this.doTransaction(request, response);
+			if(conn != null){
+				conn.commit();
+			}
+			return ret;
 		} catch (Exception e) {
 			if( conn != null ){
 				conn.rollback();
@@ -160,5 +171,9 @@ public class InjectorAction extends DefaultAction implements IInjectionProvider{
 	
 	public boolean isDebug() {
 		return this.getController().isDebug();
+	}
+
+	public Date getEventEndOfDate() {
+		return endOfDate;
 	}
 }

@@ -23,14 +23,15 @@
     
     "custom":{
     		"db":"mssql",
-    		"connection-type":"jndi",
-    		"connection-jndi":"jdbc/websphere",
+    		"connection-type":"manual",
+    		"connection-jndi":"java:/comp/env/jdbc/db2",
     		"connection-manual":{
     			"driverClassName":"com.microsoft.sqlserver.jdbc.SQLServerDriver",
     			"url":"jdbc:sqlserver://localhost:1433;databaseName=test_db;integratedSecurity=false;",
     			"username":"sa",
     			"password":"sa"
     		},
+    		"event-end-of-date": "2014/11/15",
     		"cookie-day": 1,
     		"fb-graphapi": "https://graph.facebook.com/v2.1/",
     		"fb-share-size":[510,335]
