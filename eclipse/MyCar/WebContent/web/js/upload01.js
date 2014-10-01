@@ -56,7 +56,7 @@ window.app = window.app || {};
 		});
 		
 		controller.setBtnNextClick( function(){
-			if( image == undefined ){
+			/*if( image == undefined ){
 				alert( window.app.info.pleaseUploadImage );	
 				return;
 			}
@@ -64,7 +64,7 @@ window.app = window.app || {};
 			if( isUpload ){
 				alert( window.app.info.waitForImageUpload );	
 				return;
-			}
+			}*/
 			
 			if( !canClickNext )	{
 				alert( window.app.info.pleaseWaitForFacebook );
@@ -109,7 +109,8 @@ window.app = window.app || {};
 							return;
 						}
 						$('#accessToken' ).val( token );
-						$('#fbname' ).val( name );
+						$('#fbname' ).val( encodeURIComponent(name) );
+						$('#comment' ).val( encodeURIComponent(comment) );
 						document.uploadForm.submit();
 					}, function(){
 						canClickNext = true;

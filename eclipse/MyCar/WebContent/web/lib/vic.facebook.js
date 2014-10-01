@@ -93,7 +93,7 @@ vic.facebook = vic.facebook || {};
 		}, error);
 	}
 	
-	vic.facebook.debug = true;
+	vic.facebook.debug = false;
 	vic.facebook.init = init;
 	vic.facebook.login = login;
 	vic.facebook.getMyData = getMyData;
