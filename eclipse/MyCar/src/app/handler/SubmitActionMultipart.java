@@ -64,6 +64,7 @@ public class SubmitActionMultipart extends InjectorAction {
 		bean.setSubmitDate(new Date());
 		
 		super.getSubmitArticleRepository().Create(bean.getId(), bean);
-		return new DefaultResult(bean, true);
+		response.sendRedirect("web/upload02.html?articleId="+bean.getId());
+		return null;
 	}
 }
