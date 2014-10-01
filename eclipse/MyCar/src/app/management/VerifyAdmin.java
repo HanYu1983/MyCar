@@ -127,7 +127,7 @@ public class VerifyAdmin extends InjectorAction {
 			}
 			buf.append("</body>");
 		}
-		response.setContentType("html");
+		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		try{
 			out.write(buf.toString());
