@@ -1,6 +1,8 @@
 $(function() {
 	window.app.voteInfoOpen = open;
 	
+	console.log('vote info xxxx')
+	
 	function open( options ){
 		var articleId = options.articleId;
 		var type = options.type;
@@ -20,7 +22,7 @@ $(function() {
 			}
 		}else{
 			serverapi.getArticle({
-				articleId: articleId,
+				articleId: articleId
 			},{
 				success: function(data){
 					if(data.success){

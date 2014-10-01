@@ -1,6 +1,12 @@
 var vic = vic || {};
 vic.utils = vic.utils || {};
 
+if( String.prototype.trim == undefined ){
+	 String.prototype.trim = function(){
+		return $.trim(this);
+	};
+}
+
 vic.utils.includeJS = function( ary_path ){
 	for( var i = 0; i < ary_path.length; ++i ){
 		document.write( '<script type="text/javascript" src="' + ary_path[i] + '"></script>' );
