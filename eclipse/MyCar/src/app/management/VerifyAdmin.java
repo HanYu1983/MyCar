@@ -71,7 +71,6 @@ public class VerifyAdmin extends InjectorAction {
 		{
 			buf.append("<head>");
 			{
-				buf.append("<meta http-equiv='Content-Type' content='text/html'; charset=utf-8/>");
 				buf.append("<title>Verify Manager</title>");
 			}
 			buf.append("</head>");
@@ -91,7 +90,7 @@ public class VerifyAdmin extends InjectorAction {
 			buf.append("</body>");
 		}
 		
-		response.setContentType("html");
+		response.setContentType("text/html");
 		
 		PrintWriter out = response.getWriter();
 		try{
