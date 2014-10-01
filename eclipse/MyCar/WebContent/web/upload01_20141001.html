@@ -112,10 +112,7 @@
 
 	</div>
 
-	<form name='uploadForm' action="http://192.168.2.103:8080/MyCar/Func?cmd=SubmitMultipart" method="post" enctype="multipart/form-data">
-	<!--
-	<form action="../../Func?cmd=SubmitMultipart" method="post" enctype="multipart/form-data">
-	-->
+
 	<div class="main02">
 		<div class="uplad_bg">
 			<p class="bar01">上傳照片</p>
@@ -127,7 +124,7 @@
 				<!--  <input type="submit" class="but01" id="button" value="瀏覽" />  -->
 				<div class="but01" style='float: left;'>
 					<div style='position: absolute; margin-left: 15px;'>瀏覽</div>
-					<input type="file" id="input_upload" name='image'
+					<input type="file" id="input_upload"
 						style="width: 60px; height: 30px; position: relative; opacity: 0"
 						accept="image/*" />
 				</div>
@@ -140,7 +137,7 @@
 
 			<div class="uplad_left">我與愛車</div>
 			<div class="uplad_right">
-				<textarea id="ta_describe" name='comment' cols="63" rows="10" class="text02">我與好夥伴的日常寫照，因為有了車險，我與愛車可以安心的上山下海，天天拍出精彩生活。
+				<textarea id="ta_describe" cols="63" rows="10" class="text02">我與好夥伴的日常寫照，因為有了車險，我與愛車可以安心的上山下海，天天拍出精彩生活。
 </textarea>
 			</div>
 			<div style="clear: both;"></div>
@@ -152,12 +149,10 @@
 			</p>
 
 			<p id="btn_next" class="but03">
-				下一步
+				下一步</a>
 			</p>
-			<p><input id='accessToken' type="hidden" name="accessToken" value="">
-			<p><input id='fbname' type="text" name="fbname" value="">
 		</div>
-	</form>
+
 
 
 

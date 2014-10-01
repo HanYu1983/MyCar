@@ -108,9 +108,32 @@ window.app = window.app || {};
 							alert( window.app.info.over300Word );
 							return;
 						}
-						$('#accessToken' ).val( token );
-						$('#fbname' ).val( name );
-						document.uploadForm.submit();
+						
+						var newcanvas = vic.utils.drawImageToCanvas( image, {width:window.app.imageSize.x, height:window.app.imageSize.y}, 0 )
+						var base64 = newcanvas.toDataURL();
+						
+						serverapi.submitArticle({
+							accessToken: token,
+							fbid:fbid, 
+							fbname:encodeURIComponent(name), 
+							comment:encodeURIComponent(comment), 
+							image:encodeURIComponent(base64)
+						},{
+							success: function(data){
+								allController.closeLoading();
+								if( data.success ){
+									canClickNext = true;
+									articleId = data.info.id;
+									
+									controller.nextPage( articleId );
+								}else alert( window.app.info.dataUploadError);
+							},
+							error:function(){
+								canClickNext = true;
+								allController.closeLoading();
+								alert( window.app.info.dataUploadError );
+							}
+						});
 					}, function(){
 						canClickNext = true;
 						allController.closeLoading();
