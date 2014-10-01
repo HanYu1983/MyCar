@@ -12,6 +12,8 @@ import app.behavior.UserDataPO;
 import app.model.ShouldHasValidAccessToken;
 import app.model.Tool;
 import app.tool.DefaultResult;
+import app.tool.HttpRequestInfoProvider;
+import app.tool.IRequestInfoProvider;
 import app.tool.VerifyTool;
 import app.tool.VerifyTool.MethodShouldBePost;
 import app.tool.VerifyTool.ParamNotNull;
@@ -35,24 +37,25 @@ public class SubmitUserDataAction extends InjectorAction {
 
 	@Override
 	protected DefaultResult doTransaction(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		IRequestInfoProvider infoProvider = new  HttpRequestInfoProvider(request);
 		if( this.getController().isDebug() ){
 			// nothing to do
 		}else{
-			VerifyTool.verify(request, new VerifyEventDate(super.getEventEndOfDate()));
-			VerifyTool.verify(request, new MethodShouldBePost());
+			VerifyTool.verify(infoProvider, new VerifyEventDate(super.getEventEndOfDate()));
+			VerifyTool.verify(infoProvider, new MethodShouldBePost());
 		}
 		ShouldHasValidAccessToken verifyAccessToken = new ShouldHasValidAccessToken("accessToken");
-		VerifyTool.verify(request, verifyAccessToken);
-		VerifyTool.verify(request, new ParamNotNull("articleId"));
-		VerifyTool.verify(request, new ParamShouldBeValue("submitType", new String[]{"submit", "vote"}));
+		VerifyTool.verify(infoProvider, verifyAccessToken);
+		VerifyTool.verify(infoProvider, new ParamNotNull("articleId"));
+		VerifyTool.verify(infoProvider, new ParamShouldBeValue("submitType", new String[]{"submit", "vote"}));
 		
 		String fbid = verifyAccessToken.getFbid();
-		String name = request.getParameter("name");
-		String gender = request.getParameter("gender");
-		String phone = request.getParameter("phone");
-		String email = request.getParameter("email");
-		String articleId = request.getParameter("articleId");
-		String submitType = request.getParameter("submitType");
+		String name = infoProvider.getParameter("name");
+		String gender = infoProvider.getParameter("gender");
+		String phone = infoProvider.getParameter("phone");
+		String email = infoProvider.getParameter("email");
+		String articleId = infoProvider.getParameter("articleId");
+		String submitType = infoProvider.getParameter("submitType");
 		
 		if( name!= null )
 			name = URLDecoder.decode(name, "utf-8");
@@ -62,7 +65,7 @@ public class SubmitUserDataAction extends InjectorAction {
 		po.setId(Tool.getSidWithCalendar());
 		po.setName(name);
 		if(gender!= null){
-			VerifyTool.verify(request, new ParamShouldBeValue("gender", new String[]{"M", "F"}));
+			VerifyTool.verify(infoProvider, new ParamShouldBeValue("gender", new String[]{"M", "F"}));
 			po.setGender(gender.charAt(0));
 		}
 		po.setPhone(phone);

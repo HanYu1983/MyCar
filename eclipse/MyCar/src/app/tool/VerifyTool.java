@@ -4,21 +4,20 @@ import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
 
 public class VerifyTool {
 	public interface IVerifyFunc {
-		void verify(HttpServletRequest request)throws VerifyException;
+		void verify(IRequestInfoProvider request)throws VerifyException;
 	}
 
-	public static void verify(HttpServletRequest request, IVerifyFunc fn)throws VerifyException{
+	public static void verify(IRequestInfoProvider request, IVerifyFunc fn)throws VerifyException{
 		fn.verify(request);
 	}
 	
 	public static class MethodShouldBePost implements IVerifyFunc {
 
 		
-		public void verify(HttpServletRequest request) throws VerifyException {
+		public void verify(IRequestInfoProvider request) throws VerifyException {
 			boolean not = !request.getMethod().equalsIgnoreCase("POST");
 			if(not){
 				throw new VerifyException("method should be post!");
@@ -34,7 +33,7 @@ public class VerifyTool {
 			this.name = name;
 		}
 
-		public void verify(HttpServletRequest request)throws VerifyException{
+		public void verify(IRequestInfoProvider request)throws VerifyException{
 			String[] vs = request.getParameterValues(name);
 			boolean novalue = vs == null || vs.length < 1;
 			if (novalue) {
@@ -49,7 +48,7 @@ public class VerifyTool {
 			super(name);
 		}
 
-		public void verify(HttpServletRequest request)throws VerifyException{
+		public void verify(IRequestInfoProvider request)throws VerifyException{
 			super.verify(request);
 			String[] vs = request.getParameterValues(name);
 			try{
@@ -68,7 +67,7 @@ public class VerifyTool {
 			super(name);
 		}
 
-		public void verify(HttpServletRequest request)throws VerifyException{
+		public void verify(IRequestInfoProvider request)throws VerifyException{
 			super.verify(request);
 			String[] vs = request.getParameterValues(name);
 			try{
@@ -89,7 +88,7 @@ public class VerifyTool {
 			this.values = values;
 		}
 
-		public void verify(HttpServletRequest request)throws VerifyException{
+		public void verify(IRequestInfoProvider request)throws VerifyException{
 			super.verify(request);
 			String[] vs = request.getParameterValues(name);
 			for(String v : vs){
@@ -121,7 +120,7 @@ public class VerifyTool {
 			}
 		}
 
-		public void verify(HttpServletRequest request)throws VerifyException {
+		public void verify(IRequestInfoProvider request)throws VerifyException {
 			
 			Enumeration<String> pns = request.getParameterNames();
 			boolean hasKey = false;

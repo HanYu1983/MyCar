@@ -11,6 +11,8 @@ import app.handler.InjectorAction;
 import app.model.ShouldBeAdmin;
 import app.model.Tool;
 import app.tool.DefaultResult;
+import app.tool.HttpRequestInfoProvider;
+import app.tool.IRequestInfoProvider;
 import app.tool.VerifyTool;
 import app.tool.VerifyTool.ParamShouldBeBoolean;
 import app.tool.VerifyTool.ParamShouldBeNumber;
@@ -37,18 +39,18 @@ public class VerifyManager extends InjectorAction {
 	@Override
 	protected DefaultResult doTransaction(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		
-		VerifyTool.verify(request, new ShouldBeAdmin(request.getSession(true)));
-		VerifyTool.verify(request, new ParamShouldBeNumber("page"));
-		VerifyTool.verify(request, new ParamShouldBeNumber("count"));
+		IRequestInfoProvider infoProvider = new  HttpRequestInfoProvider(request);
+		VerifyTool.verify(infoProvider, new ShouldBeAdmin(request.getSession(true)));
+		VerifyTool.verify(infoProvider, new ParamShouldBeNumber("page"));
+		VerifyTool.verify(infoProvider, new ParamShouldBeNumber("count"));
 
-		int page = Integer.parseInt(request.getParameter("page"));
-		int count = Integer.parseInt(request.getParameter("count"));
-		String articleId = request.getParameter("articleId");
+		int page = Integer.parseInt(infoProvider.getParameter("page"));
+		int count = Integer.parseInt(infoProvider.getParameter("count"));
+		String articleId = infoProvider.getParameter("articleId");
 		boolean shouldVerify = articleId != null;
 		if( shouldVerify ){
-			VerifyTool.verify(request, new ParamShouldBeBoolean("verified"));
-			boolean verified = Boolean.parseBoolean(request.getParameter("verified"));
+			VerifyTool.verify(infoProvider, new ParamShouldBeBoolean("verified"));
+			boolean verified = Boolean.parseBoolean(infoProvider.getParameter("verified"));
 			super.getSubmitArticleRepository().verifyArticle(articleId, verified);
 		}
 		

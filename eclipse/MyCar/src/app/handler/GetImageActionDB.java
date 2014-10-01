@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import app.behavior.SubmitArticlePO;
 import app.model.Tool;
 import app.tool.DefaultResult;
+import app.tool.HttpRequestInfoProvider;
+import app.tool.IRequestInfoProvider;
 import app.tool.ImageTool;
 import app.tool.VerifyTool;
 import app.tool.VerifyTool.ParamNotNull;
@@ -37,10 +39,11 @@ public class GetImageActionDB extends InjectorAction {
 	
 	@Override
 	protected DefaultResult doTransaction(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		VerifyTool.verify(request, new ParamNotNull("articleId"));
+		IRequestInfoProvider infoProvider = new  HttpRequestInfoProvider(request);
+		VerifyTool.verify(infoProvider, new ParamNotNull("articleId"));
 		
-		String articleId = request.getParameter("articleId");
-		String outputType = request.getParameter("outputType");
+		String articleId = infoProvider.getParameter("articleId");
+		String outputType = infoProvider.getParameter("outputType");
 		
 		SubmitArticlePO po = this.getSubmitArticleRepository().Read(articleId);
 
@@ -55,7 +58,7 @@ public class GetImageActionDB extends InjectorAction {
 		MAIN:
 		{
 			if( outputType!= null ){
-				VerifyTool.verify(request, new ParamShouldBeValue("outputType", new String[]{"origin", "fb", "100", "site"}));
+				VerifyTool.verify(infoProvider, new ParamShouldBeValue("outputType", new String[]{"origin", "fb", "100", "site"}));
 				
 				if( outputType.equalsIgnoreCase("fb") ){
 					BufferedImage resized = ImageTool.resize(image, (int)fbShareSize.getWidth(), (int)fbShareSize.getHeight(), Color.black);

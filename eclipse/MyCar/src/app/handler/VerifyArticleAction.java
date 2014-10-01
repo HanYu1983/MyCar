@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import app.model.ShouldBeAdmin;
 import app.tool.DefaultResult;
+import app.tool.HttpRequestInfoProvider;
+import app.tool.IRequestInfoProvider;
 import app.tool.VerifyTool;
 import app.tool.VerifyTool.MethodShouldBePost;
 import app.tool.VerifyTool.ParamNotNull;
@@ -17,12 +19,13 @@ public class VerifyArticleAction extends InjectorAction {
 	}
 	@Override
 	protected DefaultResult doTransaction(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		VerifyTool.verify(request, new MethodShouldBePost());
-		VerifyTool.verify(request, new ShouldBeAdmin(request.getSession(true)));
-		VerifyTool.verify(request, new ParamShouldBeBoolean("verified"));
-		VerifyTool.verify(request, new ParamNotNull("articleId"));
-		String articleId = request.getParameter("articleId");
-		boolean verified = Boolean.parseBoolean(request.getParameter("verified"));
+		IRequestInfoProvider infoProvider = new  HttpRequestInfoProvider(request);
+		VerifyTool.verify(infoProvider, new MethodShouldBePost());
+		VerifyTool.verify(infoProvider, new ShouldBeAdmin(request.getSession(true)));
+		VerifyTool.verify(infoProvider, new ParamShouldBeBoolean("verified"));
+		VerifyTool.verify(infoProvider, new ParamNotNull("articleId"));
+		String articleId = infoProvider.getParameter("articleId");
+		boolean verified = Boolean.parseBoolean(infoProvider.getParameter("verified"));
 		this.getSubmitArticleRepository().verifyArticle(articleId, verified);
 		return DefaultResult.Success;
 	}

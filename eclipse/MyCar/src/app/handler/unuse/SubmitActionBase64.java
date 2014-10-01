@@ -11,6 +11,8 @@ import app.behavior.SubmitArticlePO;
 import app.handler.InjectorAction;
 import app.model.Tool;
 import app.tool.DefaultResult;
+import app.tool.HttpRequestInfoProvider;
+import app.tool.IRequestInfoProvider;
 import app.tool.VerifyTool;
 import app.tool.VerifyTool.ParamNotNull;
 /**
@@ -27,15 +29,16 @@ public class SubmitActionBase64 extends InjectorAction {
 	
 	@Override
 	protected DefaultResult doTransaction(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		VerifyTool.verify(request, new ParamNotNull("image"));
-		VerifyTool.verify(request, new ParamNotNull("comment"));
-		VerifyTool.verify(request, new ParamNotNull("fbid"));
-		VerifyTool.verify(request, new ParamNotNull("fbname"));
+		IRequestInfoProvider infoProvider = new  HttpRequestInfoProvider(request);
+		VerifyTool.verify(infoProvider, new ParamNotNull("image"));
+		VerifyTool.verify(infoProvider, new ParamNotNull("comment"));
+		VerifyTool.verify(infoProvider, new ParamNotNull("fbid"));
+		VerifyTool.verify(infoProvider, new ParamNotNull("fbname"));
 		
-		String fbid = request.getParameter("fbid");
-		String fbname = request.getParameter("fbname");
-		String comment = request.getParameter("comment");
-		String image64 = request.getParameter("image");
+		String fbid = infoProvider.getParameter("fbid");
+		String fbname = infoProvider.getParameter("fbname");
+		String comment = infoProvider.getParameter("comment");
+		String image64 = infoProvider.getParameter("image");
 		
 		fbname= URLDecoder.decode(fbname, "utf-8");
 		comment = URLDecoder.decode(comment, "utf-8");

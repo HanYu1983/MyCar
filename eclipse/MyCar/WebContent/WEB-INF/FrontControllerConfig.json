@@ -2,6 +2,7 @@
     "actions":{
     		"Init":"app.handler.InitAction",
     		"Submit64":"app.handler.SubmitActionBase64StoreText",
+    		"SubmitMultipart":"app.handler.SubmitActionMultipart",
     		
     		"GetArticle":"app.handler.GetArticleAction",
     		"VerifyArticle":"app.handler.VerifyArticleAction",

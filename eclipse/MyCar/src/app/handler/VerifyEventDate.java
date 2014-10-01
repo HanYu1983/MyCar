@@ -4,8 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.servlet.http.HttpServletRequest;
-
+import app.tool.IRequestInfoProvider;
 import app.tool.VerifyException;
 import app.tool.VerifyTool.IVerifyFunc;
 
@@ -20,7 +19,7 @@ public class VerifyEventDate implements IVerifyFunc {
 		endOfDate = date;
 	}
 
-	public void verify(HttpServletRequest request) throws VerifyException {
+	public void verify(IRequestInfoProvider request) throws VerifyException {
 		Date now = new Date();
 		if (now.after(endOfDate)) {
 			throw new VerifyException("event out of date");

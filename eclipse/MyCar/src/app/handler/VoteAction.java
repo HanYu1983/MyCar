@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import app.behavior.VotePO;
 import app.model.ShouldHasValidAccessToken;
 import app.tool.DefaultResult;
+import app.tool.HttpRequestInfoProvider;
+import app.tool.IRequestInfoProvider;
 import app.tool.VerifyTool;
 import app.tool.VerifyTool.MethodShouldBePost;
 import app.tool.VerifyTool.ParamNotNull;
@@ -19,15 +21,16 @@ public class VoteAction extends InjectorAction {
 	}
 	@Override
 	protected DefaultResult doTransaction(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		IRequestInfoProvider infoProvider = new  HttpRequestInfoProvider(request);
 		if( this.getController().isDebug() ){
 			// nothing to do
 		}else{
-			VerifyTool.verify(request, new VerifyEventDate(super.getEventEndOfDate()));
-			VerifyTool.verify(request, new MethodShouldBePost());
+			VerifyTool.verify(infoProvider, new VerifyEventDate(super.getEventEndOfDate()));
+			VerifyTool.verify(infoProvider, new MethodShouldBePost());
 		}
 		ShouldHasValidAccessToken verifyAccessToken = new ShouldHasValidAccessToken("accessToken");
-		VerifyTool.verify(request, verifyAccessToken);
-		VerifyTool.verify(request, new ParamNotNull("articleId"));
+		VerifyTool.verify(infoProvider, verifyAccessToken);
+		VerifyTool.verify(infoProvider, new ParamNotNull("articleId"));
 		
 		String fbid = verifyAccessToken.getFbid();
 		String articleId = request.getParameter("articleId");
@@ -37,7 +40,7 @@ public class VoteAction extends InjectorAction {
 		vote.setVoteDate(new Date());
 		vote.setArticleId(articleId);
 		
-		String query = request.getParameter("query");
+		String query = infoProvider.getParameter("query");
 		if(query!=null){
 			boolean canVote = this.getVoteRepository().isCanVoteToday(vote);
 			return new DefaultResult(canVote, true);

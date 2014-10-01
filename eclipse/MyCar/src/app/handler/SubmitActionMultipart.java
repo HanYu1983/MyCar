@@ -1,22 +1,25 @@
 package app.handler;
 
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
 import java.net.URLDecoder;
 import java.util.Date;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import app.behavior.SubmitArticlePO;
+import app.model.MultipartRequestInfoProvider;
 import app.model.ShouldHasValidAccessToken;
 import app.model.Tool;
 import app.tool.DefaultResult;
-import app.tool.HttpRequestInfoProvider;
 import app.tool.IRequestInfoProvider;
 import app.tool.VerifyTool;
 import app.tool.VerifyTool.MethodShouldBePost;
 import app.tool.VerifyTool.ParamNotNull;
 
-public class SubmitActionBase64StoreText extends InjectorAction {
+public class SubmitActionMultipart extends InjectorAction {
 	@Override
 	protected boolean shouldConnectDB(){
 		return true;
@@ -24,8 +27,7 @@ public class SubmitActionBase64StoreText extends InjectorAction {
 	
 	@Override
 	protected DefaultResult doTransaction(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		IRequestInfoProvider infoProvider = new  HttpRequestInfoProvider(request);
-		
+		IRequestInfoProvider infoProvider = new MultipartRequestInfoProvider(request, 4* 800* 600);
 		if( this.getController().isDebug() ){
 			// nothing to do
 		}else{
@@ -41,11 +43,17 @@ public class SubmitActionBase64StoreText extends InjectorAction {
 		String fbid = verifyAccessToken.getFbid();
 		String fbname = infoProvider.getParameter("fbname");
 		String comment = infoProvider.getParameter("comment");
-		String image64 = infoProvider.getParameter("image");
+		InputStream imageInput = infoProvider.getParameterObject("image");
+		
+		BufferedImage image = ImageIO.read(imageInput);
+		try{ imageInput.close(); }catch(Exception e){}
+		
+		String image64 = Tool.encodeToString(image, "png");
+		//important: add fakeType to simular base64 from javascript
+		image64 = "fakeType,"+image64;
 		
 		fbname= URLDecoder.decode(fbname, "utf-8");
 		comment = URLDecoder.decode(comment, "utf-8");
-		image64 = URLDecoder.decode(image64, "utf-8");
 		
 		SubmitArticlePO bean = new SubmitArticlePO();
 		bean.setId(Tool.getSidWithCalendar());
@@ -56,7 +64,6 @@ public class SubmitActionBase64StoreText extends InjectorAction {
 		bean.setSubmitDate(new Date());
 		
 		super.getSubmitArticleRepository().Create(bean.getId(), bean);
-		
 		return new DefaultResult(bean, true);
 	}
 }

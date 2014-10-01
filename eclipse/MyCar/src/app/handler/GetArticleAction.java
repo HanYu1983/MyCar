@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import app.behavior.SubmitArticlePO;
 import app.tool.DefaultResult;
+import app.tool.HttpRequestInfoProvider;
+import app.tool.IRequestInfoProvider;
 import app.tool.VerifyTool;
 import app.tool.VerifyTool.ParamShouldBeNumber;
 
@@ -18,8 +20,9 @@ public class GetArticleAction extends InjectorAction {
 	}
 	@Override
 	protected DefaultResult doTransaction(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String top = request.getParameter("top");
-		String queryCount = request.getParameter("queryCount");
+		IRequestInfoProvider infoProvider = new  HttpRequestInfoProvider(request);
+		String top = infoProvider.getParameter("top");
+		String queryCount = infoProvider.getParameter("queryCount");
 		
 		boolean shouldQueryCount = queryCount != null;
 
@@ -28,13 +31,13 @@ public class GetArticleAction extends InjectorAction {
 				int count = this.getSubmitArticleRepository().getCountByAll();
 				return new DefaultResult(count, true);
 			}
-			VerifyTool.verify(request, new ParamShouldBeNumber("top"));
+			VerifyTool.verify(infoProvider, new ParamShouldBeNumber("top"));
 			int count = Integer.parseInt(top);
 			List<?> result = this.getSubmitArticleRepository().getTop(count);
 			return new DefaultResult(result, true);
 		}
 		
-		String articleId = request.getParameter("articleId");
+		String articleId = infoProvider.getParameter("articleId");
 		if(articleId != null){
 			SubmitArticlePO po = this.getSubmitArticleRepository().Read(articleId);
 			if(po != null)
@@ -43,7 +46,7 @@ public class GetArticleAction extends InjectorAction {
 				return new DefaultResult("no article["+articleId+"]");
 		}
 
-		String fbid = request.getParameter("fbid");
+		String fbid = infoProvider.getParameter("fbid");
 		
 		if (fbid != null) {
 			if(shouldQueryCount){
@@ -51,17 +54,17 @@ public class GetArticleAction extends InjectorAction {
 				return new DefaultResult(count, true);
 			}
 			
-			VerifyTool.verify(request, new ParamShouldBeNumber("start"));
-			VerifyTool.verify(request, new ParamShouldBeNumber("count"));
+			VerifyTool.verify(infoProvider, new ParamShouldBeNumber("start"));
+			VerifyTool.verify(infoProvider, new ParamShouldBeNumber("count"));
 
-			int start = Integer.parseInt(request.getParameter("start"));
-			int count = Integer.parseInt(request.getParameter("count"));
+			int start = Integer.parseInt(infoProvider.getParameter("start"));
+			int count = Integer.parseInt(infoProvider.getParameter("count"));
 
 			List<?> result = this.getSubmitArticleRepository().getByFbid(fbid, start, count);
 			return new DefaultResult(result, true);
 		}
 		
-		String fbname = request.getParameter("fbname");
+		String fbname = infoProvider.getParameter("fbname");
 		if(fbname != null){
 			fbname = URLDecoder.decode(fbname, "utf8");
 			
@@ -70,11 +73,11 @@ public class GetArticleAction extends InjectorAction {
 				return new DefaultResult(count, true);
 			}
 			
-			VerifyTool.verify(request, new ParamShouldBeNumber("start"));
-			VerifyTool.verify(request, new ParamShouldBeNumber("count"));
+			VerifyTool.verify(infoProvider, new ParamShouldBeNumber("start"));
+			VerifyTool.verify(infoProvider, new ParamShouldBeNumber("count"));
 
-			int start = Integer.parseInt(request.getParameter("start"));
-			int count = Integer.parseInt(request.getParameter("count"));
+			int start = Integer.parseInt(infoProvider.getParameter("start"));
+			int count = Integer.parseInt(infoProvider.getParameter("count"));
 
 			System.out.println("fbname:"+fbname);
 			
@@ -87,11 +90,11 @@ public class GetArticleAction extends InjectorAction {
 			return new DefaultResult(count, true);
 		}
 		
-		VerifyTool.verify(request, new ParamShouldBeNumber("start"));
-		VerifyTool.verify(request, new ParamShouldBeNumber("count"));
+		VerifyTool.verify(infoProvider, new ParamShouldBeNumber("start"));
+		VerifyTool.verify(infoProvider, new ParamShouldBeNumber("count"));
 		
-		int start = Integer.parseInt(request.getParameter("start"));
-		int count = Integer.parseInt(request.getParameter("count"));
+		int start = Integer.parseInt(infoProvider.getParameter("start"));
+		int count = Integer.parseInt(infoProvider.getParameter("count"));
 		
 		List<?> result = this.getSubmitArticleRepository().getAll(start, count);
 		return new DefaultResult(result, true);

@@ -11,6 +11,8 @@ import app.handler.InjectorAction;
 import app.model.ShouldBeAdmin;
 import app.model.Tool;
 import app.tool.DefaultResult;
+import app.tool.HttpRequestInfoProvider;
+import app.tool.IRequestInfoProvider;
 import app.tool.VerifyTool;
 import app.tool.VerifyTool.ParamShouldBeNumber;
 import app.tool.VerifyTool.ParamShouldBeValue;
@@ -30,9 +32,10 @@ public class LuckyDraw extends InjectorAction {
 	@Override
 	protected DefaultResult doTransaction(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		VerifyTool.verify(request, new ShouldBeAdmin(request.getSession(true)));
-		VerifyTool.verify(request, new ParamShouldBeValue("submitType", new String[]{"submit", "vote"}));
-		VerifyTool.verify(request, new ParamShouldBeNumber("count"));
+		IRequestInfoProvider infoProvider = new  HttpRequestInfoProvider(request);
+		VerifyTool.verify(infoProvider, new ShouldBeAdmin(request.getSession(true)));
+		VerifyTool.verify(infoProvider, new ParamShouldBeValue("submitType", new String[]{"submit", "vote"}));
+		VerifyTool.verify(infoProvider, new ParamShouldBeNumber("count"));
 		
 		String submitType = request.getParameter("submitType");
 		int count = Math.max(0,Integer.parseInt(request.getParameter("count")));

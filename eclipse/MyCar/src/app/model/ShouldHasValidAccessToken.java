@@ -2,9 +2,8 @@ package app.model;
 
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletRequest;
-
 import app.tool.FBTool;
+import app.tool.IRequestInfoProvider;
 import app.tool.VerifyException;
 import app.tool.VerifyTool.ParamNotNull;
 
@@ -19,7 +18,7 @@ public class ShouldHasValidAccessToken extends ParamNotNull {
 		super(name);
 	}
 
-	public void verify(HttpServletRequest request) throws VerifyException {
+	public void verify(IRequestInfoProvider request) throws VerifyException {
 		super.verify(request);
 		String token = request.getParameter(name);
 		try {

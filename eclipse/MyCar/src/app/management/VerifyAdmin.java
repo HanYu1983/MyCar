@@ -10,6 +10,8 @@ import app.handler.InjectorAction;
 import app.model.ShouldBeAdmin;
 import app.model.Tool;
 import app.tool.DefaultResult;
+import app.tool.HttpRequestInfoProvider;
+import app.tool.IRequestInfoProvider;
 import app.tool.VerifyTool;
 import app.tool.VerifyTool.ParamNotNull;
 
@@ -28,8 +30,8 @@ public class VerifyAdmin extends InjectorAction {
 	@Override
 	protected DefaultResult doTransaction(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		
-		String logout = request.getParameter("logout");
+		IRequestInfoProvider infoProvider = new  HttpRequestInfoProvider(request);
+		String logout = infoProvider.getParameter("logout");
 		HttpSession session = request.getSession(true);
 		
 		if(logout!= null){
@@ -46,11 +48,11 @@ public class VerifyAdmin extends InjectorAction {
 				return writeLoginPage(request, response);
 			}
 			
-			VerifyTool.verify(request, new ParamNotNull("name"));
-			VerifyTool.verify(request, new ParamNotNull("pwd"));
+			VerifyTool.verify(infoProvider, new ParamNotNull("name"));
+			VerifyTool.verify(infoProvider, new ParamNotNull("pwd"));
 			
-			String name = request.getParameter("name");
-			String pwd = request.getParameter("pwd");
+			String name = infoProvider.getParameter("name");
+			String pwd = infoProvider.getParameter("pwd");
 			
 			boolean verified = this.getAdminRepository().verifyName(name, pwd);
 			if(!verified){

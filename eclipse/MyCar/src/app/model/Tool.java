@@ -43,6 +43,21 @@ import net.iharder.Base64;
 
 public class Tool {
 	
+	public static byte[] readAllBytes(InputStream is)throws Exception{
+		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+		try{
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+			  buffer.write(data, 0, nRead);
+			}
+			buffer.flush();
+		}catch(Exception e){
+			try{ buffer.close(); }catch(Exception ee){}
+		}
+		return buffer.toByteArray();
+	}
+	
 	public static String join(String join, String[] strs ){
 		if( strs.length == 0 )
 			return "";
