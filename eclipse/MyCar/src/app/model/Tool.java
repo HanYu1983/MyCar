@@ -53,6 +53,9 @@ public class Tool {
 			}
 			buffer.flush();
 		}catch(Exception e){
+			System.out.println(e);
+			
+		}finally{
 			try{ buffer.close(); }catch(Exception ee){}
 		}
 		return buffer.toByteArray();
