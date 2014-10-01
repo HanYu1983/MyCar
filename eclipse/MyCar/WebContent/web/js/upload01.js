@@ -15,29 +15,32 @@ window.app = window.app || {};
 		var image;
 		
 		var browser = vic.utils.browserJudge();
-		if( browser.name == 'ie' ){
-			if( browser.ver != '10.0' ){
-				alert( window.app.info.belowIE10 );
+		var isNotIEOrHigherIEV10 = (function(){
+			if( browser.name == 'ie' ){
+				return  parseInt(browser.ver, 10) >= 10
 			}
+			return true
+		})()
+		
+		if( isNotIEOrHigherIEV10 ){
+			controller.setInputUploadChange( function( query ){
+				var files = query[0].files;
+				if (files && files[0]) {
+					isUpload = true;
+					allController.openLoading();
+					vic.utils.readImage( files[0], function( retImageName, retImage ){
+						controller.setTextUploadValue( retImageName );
+						image = retImage;
+						isUpload = false;
+						allController.closeLoading();
+					}, function(){
+						allController.closeLoading();
+						alert( window.app.info.imageUploadError );
+					});
+				}
+			});
 		}
 		
-		controller.setInputUploadChange( function( query ){
-			var files = query[0].files;
-			if (files && files[0]) {
-				isUpload = true;
-				allController.openLoading();
-				vic.utils.readImage( files[0], function( retImageName, retImage ){
-					controller.setTextUploadValue( retImageName );
-					image = retImage;
-					isUpload = false;
-					allController.closeLoading();
-				}, function(){
-					allController.closeLoading();
-					alert( window.app.info.imageUploadError );
-				});
-			}
-		});
-
 		controller.setTextAreaDescribeFocusin( function(){
 			if( isEdit )		return;
 			isEdit = true;
@@ -56,20 +59,24 @@ window.app = window.app || {};
 		});
 		
 		controller.setBtnNextClick( function(){
-			/*
-			if( image == undefined ){
-				alert( window.app.info.pleaseUploadImage );	
+			
+			if( isNotIEOrHigherIEV10 ){
+				if( image == undefined ){
+					alert( window.app.info.pleaseUploadImage );	
+					return;
+				}
+				
+				if( isUpload ){
+					alert( window.app.info.waitForImageUpload );	
+					return;
+				}
+			}
+
+			if( controller.getInputUploadValue() == '' ){
+				alert( window.app.info.pleaseUploadImage );
 				return;
 			}
 			
-			if( isUpload ){
-				alert( window.app.info.waitForImageUpload );	
-				return;
-			}
-			*/
-			if( controller.getInputUploadValue() == '' ){
-				alert( window.app.info.pleaseUploadImage );	
-			}
 			controller.setTextUploadValue( controller.getInputUploadValue() );
 			
 			if( !canClickNext )	{

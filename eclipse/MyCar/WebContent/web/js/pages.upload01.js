@@ -19,11 +19,11 @@ var pages = pages || {};
 			setAccessToken:function( ac ){
 				accessToken.val( ac );
 			},
-			setFbname:function( fbname ){
-				fbname.val( fbname );
+			setFbname:function( fbname_ ){
+				fbname.val( fbname_ );
 			},
-			setComment:function( comment ){
-				comment.val( comment );
+			setComment:function( comment_ ){
+				comment.val( comment_ );
 			},
 			setInputUploadChange:function( fn ){
 				input_upload.change( function(){
@@ -54,7 +54,7 @@ var pages = pages || {};
 				return ta_describe.val();
 			},
 			getInputUploadValue:function(){
-				return txt_upload.val();
+				return input_upload.val();
 			},
 			nextPage:function( articleId ){		
 				window.location.href = 'upload02.html?articleId=' + articleId;
