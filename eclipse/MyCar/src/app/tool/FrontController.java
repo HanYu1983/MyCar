@@ -151,6 +151,9 @@ public class FrontController extends HttpServlet{
 			e.printStackTrace();
 			DefaultResult result = new DefaultResult("server error");
 			result.setDebug(isDebug());
+			if( isDebug() ){
+				result.setInfo(e.toString());
+			}
 			String jsonStr = JSON.toJSONString(result);
 			PrintWriter out = response.getWriter();
 			try{

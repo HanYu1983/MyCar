@@ -1,12 +1,22 @@
 window.app = window.app || {};
-window.app.host = 'http://192.168.2.111:8080/FuBang/'
+// 實際上線的app位址
+window.app.host = 'http://192.168.2.111:8080/FuBang/';
+// FB分享的網站連結
+window.app.indexhtml = 'www.yahoo.com.tw';
+// FB的應用程式ID
+window.app.fbappid = '280619272145943';
+// FB的channel很像不需要設計, 對程式沒影響
+window.app.fbchannel = 'http://localhost:9000/test/';
+// 圖片上傳自動縮放大小
+window.app.imageSize = {x:470, y:299};
+// 是否忽略FB的流呈. 測試用
+window.app.ignoreFB = true;
+
+// 不需要調整
 window.app.sqlType = 'mysql';
 window.app.local = false;
-window.app.indexhtml = 'www.yahoo.com.tw'
-window.app.fbappid = '280619272145943'
-window.app.fbchannel = 'http://localhost:9000/test/'
-window.app.imageSize = {x:470, y:299};
 
+// FB分享文案
 window.app.info = {};
 window.app.info.pleaseUploadImage = '請您上傳一張圖片';
 window.app.info.dataUploadError = '資料傳輸失敗';
@@ -34,5 +44,5 @@ window.app.info.shareFB = {
 	description : '參加愛車照片上傳活動，除了可以集氣拿卡西歐自拍神器，還有威秀電影票可以抽唷!!!',
 	link : window.app.host, 
 	picture : window.app.host + 'web/images/100x100.jpg'
-}
+};
 	

@@ -25,22 +25,26 @@ vic.facebook = vic.facebook || {};
 	}
 	
 	function postMessageToMyboard( options, error ){
-		login( function( response ){
-			FB.ui({
-				method: 'feed', // 發布貼文
-				name: options.name,
-				link: options.link,
-				picture: options.picture,
-				caption: options.caption,
-				description: options.description
-			},function(response){
-				options.callback( response );
-			});
-		}, error);
+		if( window.app.ignoreFB ){
+			options.callback({})
+		}else{
+			login( function( response ){
+				FB.ui({
+					method: 'feed', // 發布貼文
+					name: options.name,
+					link: options.link,
+					picture: options.picture,
+					caption: options.caption,
+					description: options.description
+				},function(response){
+					options.callback( response );
+				});
+			}, error);
+		}
 	}
 	
 	function getMyData( callback, error ){
-		if( vic.facebook.debug ){
+		if( window.app.ignoreFB ){
 			callback({id:"debugId", last_name: "中文", first_name: "姓"})
 		}else{
 			login( function( auth ){
@@ -65,7 +69,7 @@ vic.facebook = vic.facebook || {};
 	}
 	
 	function login( callback, error ){
-		if( vic.facebook.debug ){
+		if( window.app.ignoreFB ){
 			callback({accessToken:'accessToken', userID:'userID'})
 		}else{
 			FB.getLoginStatus( function( res ){
@@ -86,18 +90,21 @@ vic.facebook = vic.facebook || {};
 	}
 	
 	function postOnlyMessageToMyboard( options, error ){
-		login( function( response ){
-			FB.ui({
-				method: 'apprequests', // 發布貼文
-				message:options.message,
-				to:options.to
-			},function(response){
-				options.callback( response );
-			});
-		}, error);
+		if( window.app.ignoreFB ){
+			options.callback({})
+		}else{
+			login( function( response ){
+				FB.ui({
+					method: 'apprequests', // 發布貼文
+					message:options.message,
+					to:options.to
+				},function(response){
+					options.callback( response );
+				});
+			}, error);
+		}
 	}
 	
-	vic.facebook.debug = true;
 	vic.facebook.init = init;
 	vic.facebook.login = login;
 	vic.facebook.getMyData = getMyData;

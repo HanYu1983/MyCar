@@ -5,7 +5,7 @@
     <!-- Default set of monitored resources -->
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
    
-   <Resource name="jdbc/db1" auth="Container"
+   <Resource name="jdbc/mysql" auth="Container"
         type="javax.sql.DataSource"
         maxActive="100" maxIdle="30"
         username="root" 
@@ -13,12 +13,4 @@
         driverClassName="com.mysql.jdbc.Driver"
         url="jdbc:mysql://localhost/test?characterEncoding=UTF-8"/>
         
-   <Resource name="jdbc/db2" auth="Container"
-        type="javax.sql.DataSource"
-        maxActive="100" maxIdle="30"
-        username="sa" 
-        password="sa"
-        driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDrive"
-        url="jdbc:sqlserver://localhost:1433;databaseName=test_db;integratedSecurity=false;"/>
-    	
 </Context>
