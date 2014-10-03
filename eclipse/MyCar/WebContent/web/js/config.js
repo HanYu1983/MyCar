@@ -5,12 +5,12 @@ window.app.host = 'http://192.168.2.111:8080/FuBang/';
 window.app.indexhtml = 'www.yahoo.com.tw';
 // FB的應用程式ID
 window.app.fbappid = '280619272145943';
-// FB的channel很像不需要設計, 對程式沒影響
+// FB的channel. 很像不需要設定, 對程式沒影響
 window.app.fbchannel = 'http://localhost:9000/test/';
 // 圖片上傳自動縮放大小
 window.app.imageSize = {x:470, y:299};
 // 是否忽略FB的流呈. 測試用
-window.app.ignoreFB = true;
+window.app.ignoreFB = false;
 
 // 不需要調整
 window.app.sqlType = 'mysql';
