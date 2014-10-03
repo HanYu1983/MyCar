@@ -22,14 +22,14 @@ public class VoteAction extends InjectorAction {
 	@Override
 	protected DefaultResult doTransaction(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		IRequestInfoProvider infoProvider = new  HttpRequestInfoProvider(request);
+		ShouldHasValidAccessToken verifyAccessToken = new ShouldHasValidAccessToken("accessToken");
 		if( this.getController().isDebug() ){
 			// nothing to do
 		}else{
 			VerifyTool.verify(infoProvider, new VerifyEventDate(super.getEventEndOfDate()));
 			VerifyTool.verify(infoProvider, new MethodShouldBePost());
+			VerifyTool.verify(infoProvider, verifyAccessToken);
 		}
-		ShouldHasValidAccessToken verifyAccessToken = new ShouldHasValidAccessToken("accessToken");
-		VerifyTool.verify(infoProvider, verifyAccessToken);
 		VerifyTool.verify(infoProvider, new ParamNotNull("articleId"));
 		
 		String fbid = verifyAccessToken.getFbid();

@@ -28,14 +28,15 @@ public class SubmitActionMultipart extends InjectorAction {
 	@Override
 	protected DefaultResult doTransaction(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		IRequestInfoProvider infoProvider = new MultipartRequestInfoProvider(request, 4* 800* 600);
+		
+		ShouldHasValidAccessToken verifyAccessToken = new ShouldHasValidAccessToken("accessToken");
 		if( this.getController().isDebug() ){
 			// nothing to do
 		}else{
 			VerifyTool.verify(infoProvider, new VerifyEventDate(super.getEventEndOfDate()));
 			VerifyTool.verify(infoProvider, new MethodShouldBePost());
+			VerifyTool.verify(infoProvider, verifyAccessToken);
 		}
-		ShouldHasValidAccessToken verifyAccessToken = new ShouldHasValidAccessToken("accessToken");
-		VerifyTool.verify(infoProvider, verifyAccessToken);
 		VerifyTool.verify(infoProvider, new ParamNotNull("image"));
 		VerifyTool.verify(infoProvider, new ParamNotNull("comment"));
 		VerifyTool.verify(infoProvider, new ParamNotNull("fbname"));

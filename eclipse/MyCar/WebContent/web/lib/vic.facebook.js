@@ -65,20 +65,24 @@ vic.facebook = vic.facebook || {};
 	}
 	
 	function login( callback, error ){
-		FB.getLoginStatus( function( res ){
-			if (res.status === 'connected') {
-			callback( res.authResponse );
+		if( vic.facebook.debug ){
+			callback({accessToken:'accessToken', userID:'userID'})
 		}else{
-				FB.login( function( res ){
-					if (res.authResponse) {
-						callback( res.authResponse );
-					}else{
-						if( error != undefined )
-							error( res );
-					}
-				});
-			}
-		});
+			FB.getLoginStatus( function( res ){
+				if (res.status === 'connected') {
+				callback( res.authResponse );
+			}else{
+					FB.login( function( res ){
+						if (res.authResponse) {
+							callback( res.authResponse );
+						}else{
+							if( error != undefined )
+								error( res );
+						}
+					});
+				}
+			});
+		}
 	}
 	
 	function postOnlyMessageToMyboard( options, error ){
@@ -93,7 +97,7 @@ vic.facebook = vic.facebook || {};
 		}, error);
 	}
 	
-	vic.facebook.debug = false;
+	vic.facebook.debug = true;
 	vic.facebook.init = init;
 	vic.facebook.login = login;
 	vic.facebook.getMyData = getMyData;

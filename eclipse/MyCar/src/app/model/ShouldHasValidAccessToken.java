@@ -36,7 +36,10 @@ public class ShouldHasValidAccessToken extends ParamNotNull {
 	}
 	
 	public String getFbid(){
-		return authRes.getString("id");
+		if( authRes == null )
+			return "null fbid";
+		else
+			return authRes.getString("id");
 	}
 
 }

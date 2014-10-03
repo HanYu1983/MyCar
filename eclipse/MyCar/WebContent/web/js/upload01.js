@@ -107,7 +107,7 @@ window.app = window.app || {};
 				//for fb test
 				
 				var fbdata = window.app.info.shareFB;
-				fbdata.name = 'sitename';
+				fbdata.name = window.app.info.shareFB.caption;
 				fbdata.callback = function( res ){
 					if( res != null ){
 						alert( window.app.info.shareFBSuccess );

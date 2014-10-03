@@ -1,8 +1,6 @@
 $(function() {
 	window.app.voteInfoOpen = open;
 	
-	console.log('vote info xxxx')
-	
 	function open( options ){
 		var articleId = options.articleId;
 		var type = options.type;

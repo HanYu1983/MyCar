@@ -1,6 +1,11 @@
 var vic = vic || {};
 vic.utils = vic.utils || {};
 
+// for IE no console
+if( console == undefined ){
+	console = { log: function(v){} };
+}
+
 if( String.prototype.trim == undefined ){
 	 String.prototype.trim = function(){
 		return $.trim(this);
