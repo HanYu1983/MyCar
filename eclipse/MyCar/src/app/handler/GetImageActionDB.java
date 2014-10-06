@@ -57,11 +57,12 @@ public class GetImageActionDB extends InjectorAction {
 		
 		MAIN:
 		{
+			Color bgColor = Color.white;
 			if( outputType!= null ){
 				VerifyTool.verify(infoProvider, new ParamShouldBeValue("outputType", new String[]{"origin", "fb", "100", "site"}));
 				
 				if( outputType.equalsIgnoreCase("fb") ){
-					BufferedImage resized = ImageTool.resize(image, (int)fbShareSize.getWidth(), (int)fbShareSize.getHeight(), Color.black);
+					BufferedImage resized = ImageTool.resize(image, (int)fbShareSize.getWidth(), (int)fbShareSize.getHeight(), bgColor);
 					
 					byte[] imageBytes = Tool.image2bytes(resized);
 					ByteArrayInputStream bais = new ByteArrayInputStream(imageBytes);
@@ -74,7 +75,7 @@ public class GetImageActionDB extends InjectorAction {
 				}
 				
 				if( outputType.equalsIgnoreCase("100") ){
-					BufferedImage resized = ImageTool.resize(image, 100, 100, Color.black);
+					BufferedImage resized = ImageTool.resize(image, 100, 100, bgColor);
 					
 					byte[] imageBytes = Tool.image2bytes(resized);
 					ByteArrayInputStream bais = new ByteArrayInputStream(imageBytes);
@@ -87,7 +88,7 @@ public class GetImageActionDB extends InjectorAction {
 				}
 				
 				if( outputType.equalsIgnoreCase("site") ){
-					BufferedImage resized = ImageTool.resize(image, 470, 299, Color.black);
+					BufferedImage resized = ImageTool.resize(image, 470, 299, bgColor);
 					
 					byte[] imageBytes = Tool.image2bytes(resized);
 					ByteArrayInputStream bais = new ByteArrayInputStream(imageBytes);
