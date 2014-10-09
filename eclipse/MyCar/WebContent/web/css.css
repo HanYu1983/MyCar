@@ -366,6 +366,17 @@
 	text-indent:-9999px;
 	margin-bottom:25px;
 	}
+	
+.bar06 {
+	display:block;
+	width:662px;
+	height:43px;
+	background-image:url(images/bar06.jpg);
+	background-position:left top;
+	background-repeat:no-repeat;
+	text-indent:-9999px;
+	margin-bottom:25px;
+	}
 /* test */
 
 .search01 {
