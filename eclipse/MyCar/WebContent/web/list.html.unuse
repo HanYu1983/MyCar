@@ -35,7 +35,7 @@ function MM_swapImage() { //v3.0
   <li class="menu_logo"><a href="https://www.fubon.com/insurance/b2c/content/main/new.html" target="_blank">富邦產險</a></li>
   <li class="menu_1"><a href="vote.html" target="_top">票選專區</a></li>
   <li class="menu_2"><a href="event.html" target="_top">活動辦法</a></li>
-  <li class="menu_3"><a href="list.html" target="_top">中獎名單</a></li>
+  <li class="menu_3"><a href="list.html" target="_top"">中獎名單</a></li>
   <li class="menu_4"><a href="https://www.fubon.com/insurance/b2c/content/main/new.html" target="_blank">網路投保優惠專區</a></li>
   <li class="menu_5"><a href="index.html" target="_top">回首頁</a></li>
   <li class="menu_6"><a href="https://www.facebook.com/fubon.ins?fref=ts" target="_blank">FB粉絲團</a></li>
@@ -51,7 +51,7 @@ function MM_swapImage() { //v3.0
   <div class="event_bg">
   
   <p class="bar06">中獎名單</p>
-  <iframe src="https://www.fubon.com/insurance/b2c/campaign/mycar_mylife/list_info.html" name="frmMenu" width="665
+  <iframe src="list_info.html" name="frmMenu" width="665
     " marginwidth="0" height="660" marginheight="0" align="center" scrolling="Auto" frameborder="0" id="frmMenu2" iframe="iframe"></iframe>
   
   
@@ -61,5 +61,5 @@ function MM_swapImage() { //v3.0
   
   
   
-</div><!-- #BeginLibraryItem "/Library/copyright.lbi" --><div class="copyright">客服信箱：<SPAN lang="EN-US"><A title="blocked::mailto:ec.ins@fubon.com" href="mailto:ec.ins@fubon.com">ec.ins@fubon.com</A></SPAN>　活動專線：<SPAN lang="EN-US">(02)2706-7890 </SPAN>分機<SPAN lang="EN-US">58962</SPAN>　服務時間：上班日上午8:30至下午5:30　copyright Fubon Financial.All Rights Reserved.11</div><!-- #EndLibraryItem --></body>
+</div><!-- #BeginLibraryItem "/Library/copyright.lbi" --><div class="copyright">客服信箱：<SPAN lang="EN-US"><A title="blocked::mailto:ec.ins@fubon.com" href="mailto:ec.ins@fubon.com">ec.ins@fubon.com</A></SPAN>　活動專線：<SPAN lang="EN-US">(02)2706-7890 </SPAN>分機<SPAN lang="EN-US">58962</SPAN> copyright Fubon Financial.All Rights Reserved.11</div><!-- #EndLibraryItem --></body>
 </html>
