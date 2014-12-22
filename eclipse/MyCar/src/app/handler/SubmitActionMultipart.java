@@ -29,7 +29,7 @@ public class SubmitActionMultipart extends InjectorAction {
 	protected DefaultResult doTransaction(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		IRequestInfoProvider infoProvider = new MultipartRequestInfoProvider(request, 4* 800* 600);
 		
-		ShouldHasValidAccessToken verifyAccessToken = new ShouldHasValidAccessToken("accessToken");
+		ShouldHasValidAccessToken verifyAccessToken = new ShouldHasValidAccessToken("fbid", "accessToken");
 		if( this.getController().isDebug() ){
 			// nothing to do
 		}else{
@@ -41,7 +41,7 @@ public class SubmitActionMultipart extends InjectorAction {
 		VerifyTool.verify(infoProvider, new ParamNotNull("comment"));
 		VerifyTool.verify(infoProvider, new ParamNotNull("fbname"));
 		
-		String fbid = verifyAccessToken.getFbid();
+		String fbid = infoProvider.getParameter("fbid");
 		String fbname = infoProvider.getParameter("fbname");
 		String comment = infoProvider.getParameter("comment");
 		InputStream imageInput = infoProvider.getParameterObject("image");

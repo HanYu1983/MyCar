@@ -43,7 +43,7 @@ import net.iharder.Base64;
 
 public class Tool {
 	
-	public static byte[] readAllBytes(InputStream is)throws Exception{
+	public static byte[] readAllBytes(InputStream is)throws IOException{
 		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 		try{
 			int nRead;

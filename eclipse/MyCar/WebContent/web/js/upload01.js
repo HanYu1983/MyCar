@@ -121,6 +121,7 @@ window.app = window.app || {};
 							alert( window.app.info.over300Word );
 							return;
 						}
+						controller.setFbid( fbid )
 						controller.setAccessToken( token );
 						controller.setFbname( encodeURIComponent(name) );
 						controller.setComment( encodeURIComponent(comment) );

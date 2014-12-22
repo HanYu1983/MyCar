@@ -4,7 +4,8 @@ window.app.host = 'http://192.168.2.111:8080/FuBang/';
 // FB分享的網站連結
 window.app.indexhtml = 'www.yahoo.com.tw';
 // FB的應用程式ID
-window.app.fbappid = '705619549508753';
+//window.app.fbappid = '705619549508753';
+window.app.fbappid = '280619272145943';
 // FB的channel. 很像不需要設定, 對程式沒影響
 window.app.fbchannel = 'http://localhost:9000/test/';
 // 圖片上傳自動縮放大小

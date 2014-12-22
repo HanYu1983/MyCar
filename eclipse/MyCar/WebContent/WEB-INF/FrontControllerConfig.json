@@ -24,7 +24,7 @@
     
     "custom":{
     		"db":"mssql",
-    		"connection-type":"jndi",
+    		"connection-type":"manual",
     		"connection-jndi":"jdbc/websphere",
     		"connection-manual":{
     			"driverClassName":"com.microsoft.sqlserver.jdbc.SQLServerDriver",

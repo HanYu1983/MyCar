@@ -32,6 +32,10 @@ public class VerifyTool {
 		public ParamNotNull(String name) {
 			this.name = name;
 		}
+		
+		public String getName(){
+			return name;
+		}
 
 		public void verify(IRequestInfoProvider request)throws VerifyException{
 			String[] vs = request.getParameterValues(name);

@@ -5,6 +5,7 @@ var pages = pages || {};
 	
 	function upload01Controller( dom ){
 		var jdom = $(dom)
+		var fbid = jdom.find('#fbid' )
 		var input_upload = jdom.find('#input_upload' )
 		var txt_upload = jdom.find('#txt_upload' )
 		var ta_describe = jdom.find('#ta_describe' )
@@ -16,6 +17,9 @@ var pages = pages || {};
 		txt_upload.val( '' );
 		
 		return {
+			setFbid: function( value ){
+				fbid.val( value )
+			},
 			setAccessToken:function( ac ){
 				accessToken.val( ac );
 			},

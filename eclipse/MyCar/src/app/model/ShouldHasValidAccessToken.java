@@ -5,24 +5,29 @@ import java.io.IOException;
 import app.tool.FBTool;
 import app.tool.IRequestInfoProvider;
 import app.tool.VerifyException;
+import app.tool.VerifyTool.IVerifyFunc;
 import app.tool.VerifyTool.ParamNotNull;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
-public class ShouldHasValidAccessToken extends ParamNotNull {
+public class ShouldHasValidAccessToken implements IVerifyFunc {
 	
+	private ParamNotNull fbIdVerify, accessTokenVerify;
 	private JSONObject authRes;
 	
-	public ShouldHasValidAccessToken(String name) {
-		super(name);
+	public ShouldHasValidAccessToken(String fbidKey, String accessTokenKey ) {
+		fbIdVerify = new ParamNotNull( fbidKey );
+		accessTokenVerify = new ParamNotNull( accessTokenKey );
 	}
 
 	public void verify(IRequestInfoProvider request) throws VerifyException {
-		super.verify(request);
-		String token = request.getParameter(name);
+		fbIdVerify.verify(request);
+		accessTokenVerify.verify(request);
+		String fbId = request.getParameter(fbIdVerify.getName());
+		String token = request.getParameter(accessTokenVerify.getName());
 		try {
-			String ret = FBTool.me(token);
+			String ret = FBTool.getUser(fbId, token);
 			authRes = (JSONObject)JSON.parse(ret);
 			boolean isError = authRes.containsKey("error");
 			if(isError){
@@ -34,12 +39,12 @@ public class ShouldHasValidAccessToken extends ParamNotNull {
 		}
 		
 	}
-	
+	/*
 	public String getFbid(){
 		if( authRes == null )
 			return "null fbid";
 		else
 			return authRes.getString("id");
-	}
+	}*/
 
 }
