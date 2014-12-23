@@ -40,7 +40,7 @@ serverapi = {};
 			success: function(msg){
 				if(msg.debug){
 					alert("注意：您正在使用除錯模式")
-					console.log(msg)
+					//console.log(msg)
 				}
 				if(callback.success) 
 					callback.success(msg);

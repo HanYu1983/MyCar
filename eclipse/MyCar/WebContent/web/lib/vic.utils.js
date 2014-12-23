@@ -106,7 +106,7 @@ vic.utils.toURL = function( url, data, datatype, method, onComplete ){
 		
 		cache: false,
 		success: function(msg){
-			console.log( msg );
+		//	console.log( msg );
 			if( onComplete != undefined )	onComplete( msg );
 		},
 		error:function(xhr, ajaxOptions, thrownError){ 
