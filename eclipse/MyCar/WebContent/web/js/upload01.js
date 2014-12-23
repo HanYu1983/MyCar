@@ -1,9 +1,9 @@
 window.app = window.app || {};
 
 (function(){
-	//if( window.app.local )	open();
-	//else	vic.facebook.init( window.app.fbappid, window.app.fbchannel, open );
-	open();
+	if( window.app.local )	open();
+	else	vic.facebook.init( window.app.fbappid, window.app.fbchannel, open );
+	
 	function open(){
 		var controller = pages.upload01Controller( $('body' ));
 		var allController = pages.allController( $('body' ));
