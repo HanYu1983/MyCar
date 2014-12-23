@@ -6,6 +6,7 @@ var pages = pages || {};
 	function upload01Controller( dom ){
 		var jdom = $(dom)
 		var fbid = jdom.find('#fbid' )
+		var but01 = jdom.find( '.but01' )
 		var input_upload = jdom.find('#input_upload' )
 		var txt_upload = jdom.find('#txt_upload' )
 		var ta_describe = jdom.find('#ta_describe' )
@@ -17,6 +18,14 @@ var pages = pages || {};
 		txt_upload.val( '' );
 		
 		return {
+			setBtnVisible: function( show ){
+				if( !show ){
+					but01.removeClass( 'but01' );
+					but01.find( 'div' ).hide();
+					input_upload.show();
+					input_upload.css( 'opacity', 1 );
+				}
+			},
 			setFbid: function( value ){
 				fbid.val( value )
 			},

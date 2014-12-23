@@ -1,8 +1,9 @@
 window.app = window.app || {};
+
 (function(){
-	if( window.app.local )	open();
-	else	vic.facebook.init( window.app.fbappid, window.app.fbchannel, open );
-	
+	//if( window.app.local )	open();
+	//else	vic.facebook.init( window.app.fbappid, window.app.fbchannel, open );
+	open();
 	function open(){
 		var controller = pages.upload01Controller( $('body' ));
 		var allController = pages.allController( $('body' ));
@@ -13,7 +14,7 @@ window.app = window.app || {};
 		var fbid;
 		var articleId;
 		var image;
-		
+
 		var browser = vic.utils.browserJudge();
 		var isNotIEOrHigherIEV10 = (function(){
 			if( browser.name == 'ie' ){
@@ -23,6 +24,7 @@ window.app = window.app || {};
 		})()
 		
 		if( isNotIEOrHigherIEV10 ){
+			controller.setBtnVisible( true );
 			controller.setInputUploadChange( function( query ){
 				var files = query[0].files;
 				if (files && files[0]) {
@@ -39,6 +41,8 @@ window.app = window.app || {};
 					});
 				}
 			});
+		}else{
+			controller.setBtnVisible( false );
 		}
 		
 		controller.setTextAreaDescribeFocusin( function(){
